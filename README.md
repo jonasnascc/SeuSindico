@@ -1,46 +1,36 @@
-# Getting Started with Create React App
+# SeuSindico - Facilitando a Gestão de Aluguéis
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Visão Geral
+O *SeuSindico* é uma plataforma projetada para simplificar a interação entre proprietários de imóveis (locadores) e ocupantes (locatários), otimizando o processo de aluguel e oferecendo uma experiência integrada e eficiente para ambas as partes.
 
-## Available Scripts
+## Funcionalidades Principais
+1. **Registro de Locação:**
+   - Locadores podem cadastrar seus imóveis na plataforma, especificando detalhes como localização, tamanho e características.
+   - Locatários interessados fornecem seus dados para gerar um contrato personalizado.
 
-In the project directory, you can run:
+2. **Gestão de Contratos:**
+   - Locatários assinam contratos digitalmente por meio de suas contas na aplicação, oficializando o processo de locação.
+   - Detalhes como dados do ocupante, valor do aluguel, período de locação e cláusulas/restricções são especificados pelo locador.
 
-### `npm start`
+3. **Pagamentos e Finanças:**
+   - Ocupantes podem efetuar o pagamento do aluguel diretamente pela plataforma.
+   - Locadores têm acesso a informações sobre pagamentos realizados, facilitando a gestão financeira.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+4. **Comunicação Eficaz:**
+   - Ocupantes podem registrar queixas ou solicitações de reparo, proporcionando uma comunicação direta com o locador.
+   - Locadores recebem notificações sobre reclamações e podem tomar medidas apropriadas.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+5. **Monitoramento de Despesas:**
+   - Locadores podem adicionar serviços extras (internet, água, energia, etc.) para serem incluídos na fatura do aluguel.
+   - Ocupantes podem verificar e pagar essas despesas extras por meio da plataforma.
 
-### `npm test`
+6. **Acompanhamento de Cumprimento Contratual:**
+   - Locadores têm a capacidade de verificar se os ocupantes cumpriram com suas obrigações contratuais.
+   - Envio de notificações para lembretes de pagamento ou atualizações sobre solicitações dos ocupantes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Benefícios para Locadores e Locatários
+- **Transparência:** Toda a informação relevante está disponível na plataforma, promovendo transparência e confiança mútua.
+- **Facilidade de Pagamento:** Ocupantes podem realizar pagamentos de aluguel e despesas adicionais de forma rápida e segura.
+- **Eficiência na Comunicação:** Locadores e locatários podem se comunicar de maneira eficaz, simplificando a resolução de problemas e solicitações.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Em resumo, o *SeuSindico* é uma solução abrangente que visa otimizar a relação entre locadores e locatários, proporcionando uma experiência mais transparente, eficiente e colaborativa no processo de aluguel de imóveis.

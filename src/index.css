@@ -1,13 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input {
+  height: 40px;
+  font-size: 16px;
+  width: 100%;
+
+  border: solid 1px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+input.center-text {
+  text-align: center;
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+  font-size: 16px;
+  font-weight: 400;
+  border-width: 0;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+button.full-width {
+  width: 100%;
+}
+
+button.login {
+  min-width: 100px;
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.4);
+  background-color: #ccef00;
+}
+
+button.signup {
+  min-width: 100px;
+  color: white;
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.4);
+  background-color: #ff8533;
 }
