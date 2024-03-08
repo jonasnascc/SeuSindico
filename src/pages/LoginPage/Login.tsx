@@ -12,14 +12,13 @@ export const LoginPage = () => {
     const [password, setPassword] = useState("");
     const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-    const handleLoginButton = (event : any) => {
+    const handleLoginButton = async (event : any) => {
         event.preventDefault();
-        
         if(login==="" || password === "" || !auth.signin(login, password)){
             handleError();
-        } else {
+        } else if(await auth.signin(login, password)){
             navigate("/");
-        }
+        } else handleError();
     }
 
     const handleSignupButton = (event:any) => {

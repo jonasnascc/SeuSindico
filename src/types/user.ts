@@ -1,5 +1,7 @@
 export type User = {
-    login : string,
-    password: string,
+    id: string,
+    name: string,
+    cpf: string,
+    email: string,
     role : string | null
 }
