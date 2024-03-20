@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../../logo.svg"
-import styled from "styled-components";
 import { AuthContext } from "../../context/auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { ErrorMessage, Form, FormContainer, InputText, LoginText, Logo } from "../../shared/components/Auth/styles";
 
 export const LoginPage = () => {
     const auth = useContext(AuthContext);
@@ -11,6 +11,10 @@ export const LoginPage = () => {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+    useEffect(() => {
+        if(auth.authenticated) navigate("/");
+    },[])
 
     const handleLoginButton = async (event : any) => {
         event.preventDefault();
@@ -39,18 +43,20 @@ export const LoginPage = () => {
     }
  
     return ( 
-        <Login>
-            <LoginForm method="POST" action="/api/auth/login" name="user">
+        <FormContainer>
+            <Form method="POST" action="/api/auth/login" name="user">
                 <Logo src={logo} alt="logo"/>
                 <LoginText>Entre ou cadastre-se</LoginText>
                 {showErrorMessage&&<ErrorMessage>Login ou senha incorretos!</ErrorMessage>}
+                <InputText>Email ou CPF</InputText>     
                 <input 
                     className="center-text" 
                     type="text" id="login" 
                     name="login" 
                     onChange={handleLoginInput}
                 />
-                
+
+                <InputText>Senha</InputText>        
                 <input 
                     className="center-text" 
                     type="password" 
@@ -74,41 +80,8 @@ export const LoginPage = () => {
                 >
                     Cadastre-se
                 </button>
-            </LoginForm>
-        </Login>
+            </Form>
+        </FormContainer>
     )
 }
 
-const Login = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 90vh;
-    overflow: hidden;
-`
-
-const Logo = styled.img`
-    height: 130px;
-`
-
-const LoginText = styled.h2`
-    font-weight: 500;
-    font-size: 1.4em;
-`
-
-const ErrorMessage = styled.span`
-    font-size: 14px;
-    color: red;
-`
-
-const LoginForm = styled.form`
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1vh;
-    width: 250px;
-    overflow: hidden;
-`

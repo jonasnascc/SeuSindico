@@ -3,6 +3,6 @@ import { Navigate } from "react-router-dom";
 
 export const HomePage = () => {
     return (<>
-        <Navigate to={"/login"}/>
+        <h1>Você está logado.</h1>
     </>)
 }
