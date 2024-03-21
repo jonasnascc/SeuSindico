@@ -11,7 +11,7 @@ export const SignupPage = () => {
 
     useEffect(() => {
         if(authenticated) navigate("/");
-    },[])
+    },[authenticated])
 
     const [formData, setFormData] = useState({
         nome : "",
@@ -86,7 +86,7 @@ export const SignupPage = () => {
                     autoComplete="on" 
                     onChange={() => null}
                 />
-
+ 
                 <InputText>Tipo de usuário</InputText>
                 <select defaultValue={"OCUPANTE"} name="role">
                     <option value={"OCUPANTE"}>Ocupante</option>

@@ -14,7 +14,7 @@ export const LoginPage = () => {
 
     useEffect(() => {
         if(auth.authenticated) navigate("/");
-    },[])
+    },[auth.authenticated])
 
     const handleLoginButton = async (event : any) => {
         event.preventDefault();
