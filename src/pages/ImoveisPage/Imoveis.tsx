@@ -8,6 +8,7 @@ import { getUserImoveis } from "../../api/services/Imoveis";
 import { ImoveisTable } from "../../shared/components/ImoveisTable/ImoveisTable";
 
 import SearchIcon from '@mui/icons-material/Search';
+import { ActionButtons } from "../../shared/components/ActionButtons/ActionButtons";
 
 export const ImoveisPage = () => {
     const {user} = useContext(AuthContext);
@@ -29,6 +30,7 @@ export const ImoveisPage = () => {
     return (
         <ImoveisDiv>
             <SectionHeader label="Meus imóveis"/>
+            <ActionButtons/>
             <SearchDiv>
                 Pesquise por uma palavra chave:
                 <Pesquisa>

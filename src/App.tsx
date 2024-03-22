@@ -5,6 +5,7 @@ import { LoginPage } from './pages/LoginPage/Login';
 import { SignupPage } from './pages/SignupPage/Signup';
 import { HomePage } from './pages/HomePage/Home';
 import { ImoveisPage } from './pages/ImoveisPage/Imoveis';
+import { AddImovel } from './pages/ImoveisPage/AddImovel';
 
 function App() {
   return (
@@ -14,7 +15,10 @@ function App() {
           <Route index element={<HomePage/>}/>
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/signup' element={<SignupPage/>}/>
-          <Route path='/imoveis' element={<ImoveisPage/>}/>
+          <Route path='/imoveis'>
+            <Route index element={<ImoveisPage/>} />
+            <Route path='adicionar' element={<AddImovel/>}/>
+          </Route>
         </Route>
       </Routes>
     </div>
