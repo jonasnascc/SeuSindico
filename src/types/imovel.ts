@@ -3,15 +3,15 @@ export type Imovel = {
     nome: string,
     descricao: string,
     quantidadeAndares: number,
-    residenciasPorAndar: number,
+    espacosPorAndar: number,
     endereco: Endereco,
-    residencias: Residencia[],
-    tipo: "CASA" | "APARTAMENTO" | "ESCRITORIO" | "COMERCIO"
+    espacos: Espaco[],
+    tipo: "CASA" | "EDIFICIO"
 }
 
 export type Endereco = {
     rua: string,
-    numero: number,
+    numero: number | null,
     bairro: string,
     cidade: string,
     estado: string,
@@ -19,12 +19,13 @@ export type Endereco = {
     complemento: string
 }
 
-export type Residencia = {
-    residenciaId: number,
-    andar: number,
-    numero: number,
-    quantidadeComodos: number,
-    metrosQuadrados: number,
+export type Espaco = {
+    tipo: "" | "APARTAMENTO" | "ESCRITORIO" | "PONTO_COMERCIAL"
+    espacoId: number | null,
+    andar: number | null,
+    numero: number | null,
+    quantidadeComodos: number | null,
+    metrosQuadrados: number | null,
     comodos: Comodo[]
 }
 

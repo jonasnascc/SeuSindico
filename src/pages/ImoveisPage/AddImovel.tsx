@@ -1,56 +1,70 @@
-import { Label } from "@mui/icons-material"
-import { SectionHeader } from "../../shared/components/SectionHeader/SectionHeader"
-import { Typography } from "@mui/material"
+import { SectionHeader } from "../../shared/components/SectionHeader/SectionHeader";
+import { Divider, Grid } from "@mui/material"
 import styled from "styled-components"
-import { EnderecoFormBody } from "../../shared/components/Input/EnderecoFormBody"
+import { StringInput } from "../../shared/components/Input/StringInput"
+import { NumberInput } from "../../shared/components/Input/NumberInput"
+import { useState } from "react"
+import { EnderecoForm } from "../../shared/components/AddImovelForm/EnderecoForm";
+import { Endereco, Espaco } from "../../types/imovel";
+import { EspacoForm } from "../../shared/components/AddImovelForm/EspacoForm";
 
 export const AddImovel = () => {
+    const [endereco, setEndereco] = useState<Endereco>();
+    const [espacos, setEspacos] = useState<Espaco[]>();
+    const [isRegistrandoEspaco, setRegistrandoEspaco] = useState(false); 
+
+
+    const handleRegistrarEspaco = (event : any) => {
+        event.preventDefault();
+        setRegistrandoEspaco(true);
+    }
+
+    const handleCancelarRegistroEspaco = (event : any) => {
+        event.preventDefault();
+        setRegistrandoEspaco(false);
+    }
+
+    const handleEnderecoChange = (novoValor : Endereco) => {
+        setEndereco(novoValor);
+    }
+
     return (
         <>
-        <SectionHeader label="Adicionar Imóvel"/>
-        
-        <Content>
-            <FormsSlider>
-                <Formulario>
-                    <FormularioTitulo>Endereço do imóvel</FormularioTitulo>
-                    <EnderecoFormBody/>
-                </Formulario>
-            </FormsSlider>
-        </Content>
+            <SectionHeader label="Adicionar Imóvel"/>
+            <FormularioTitulo>Tipo do imóvel</FormularioTitulo>
+            <select name="tipoImovel" defaultValue="CASA">
+                <option value="CASA">Casa</option>
+                <option value="EDIFICIO">Edificio</option>
+            </select>
+            <InputText>Quantidade de andares</InputText>
+            <NumberInput name="quantidadeAndares" larguraMinima/>
+
+            <EnderecoForm onFormChange={handleEnderecoChange}/>
+            <FormularioTitulo>Seu espaço</FormularioTitulo>
+
+            {
+                !isRegistrandoEspaco ? (
+                    <button onClick={handleRegistrarEspaco}> Registrar um espaco </button>
+                ) : (
+                    <>
+                    <EspacoForm onFormChange={() => null}/>
+                    <button onClick={handleCancelarRegistroEspaco}> Cancelar Tudo </button>
+                    </>
+                )
+            }
         </>
     )
 }
 
-const Content = styled.div`
-    display: flex;
-    align-items: center;
-    height: 100%;
-`
-
-const FormsSlider = styled.div`
-    position: relative;
-    display: flex;
-    width: 100%;
-    overflow-x: auto; /* Adicionando rolagem horizontal */
-    background-color: white;
-    padding: 20px 2vw;
-    margin: 20px 0;
-    min-height: 50vh;
-`
 
 const FormularioTitulo = styled.h3`
     font-weight: 500;
 `
+const Subtitle = styled.h4`
+    font-weight: 500;
+`
 
-const Formulario = styled.form`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 90%;
-    min-height: 100%;
-    padding: 20px 2vw;
-    background-color: rgb(243, 243, 243);
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    margin-right: 20px; /* Espaço entre os formulários */
+const InputText = styled.span`
+    margin: 0;
+    padding: 0;
 `
