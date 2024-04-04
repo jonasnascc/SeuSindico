@@ -1,12 +1,20 @@
 export type Imovel = {
-    codigo: number,
+    codigo: number | null,
     nome: string,
     descricao: string,
-    quantidadeAndares: number,
-    espacosPorAndar: number,
-    endereco: Endereco,
+    quantidadeAndares: number | null,
+    espacosPorAndar: number | null,
+    endereco: Endereco | null,
     espacos: Espaco[],
-    tipo: "CASA" | "EDIFICIO"
+    tipo: "" |"CASA" | "EDIFICIO"
+}
+
+export type SimpleImovel = {
+    nome: string,
+    descricao: string,
+    quantidadeAndares: number | null,
+    espacosPorAndar: number | null,
+    tipo: "" |"CASA" | "EDIFICIO"
 }
 
 export type Endereco = {
@@ -31,6 +39,6 @@ export type Espaco = {
 
 export type Comodo = {
     nome: string,
-    metrosQuadrados: number,
+    metrosQuadrados: number | null,
     detalhes: string
 } 

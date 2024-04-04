@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-export const NumberInput = ({name, larguraMinima=false} : {name:string, larguraMinima?:boolean}) => {
+export const NumberInput = ({name, larguraMinima=false, placeholder=""} : {name:string, placeholder?:string, larguraMinima?:boolean}) => {
     return (
         <Input
             id={name}
             type="number"
             name={name}
+            placeholder={placeholder}
             $larguraMinima={larguraMinima}
         />
     )

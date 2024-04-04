@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { NumberInput } from "../Input/NumberInput";
 import { StringInput } from "../Input/StringInput";
-import { FormularioTitulo, InputText, Subtitle } from "./styles";
-import { Espaco } from "../../../types/imovel";
+import { CenterGrid, FormularioTitulo, InputText, Subtitle } from "./styles";
+import { Comodo, Espaco } from "../../../types/imovel";
+import { ComodoForm } from "./ComodoForm";
+import { Grid } from "@mui/material";
 
-export const EspacoForm = ({onFormChange} : {onFormChange : (espaco : Espaco) => void}) => {
+export const EspacoForm = ({onSaveEspaco} : {onSaveEspaco : (espaco : Espaco) => void}) => {
     const [espaco, setEspaco] = useState<Espaco>({
         tipo: "",
         espacoId: null,
@@ -22,7 +24,6 @@ export const EspacoForm = ({onFormChange} : {onFormChange : (espaco : Espaco) =>
             [event.target.name] : event.target.value
         }
         setEspaco(newObject);
-        onFormChange(newObject);
     }
     
     const handleRegistrarComodo = (event : any) => {
@@ -35,42 +36,73 @@ export const EspacoForm = ({onFormChange} : {onFormChange : (espaco : Espaco) =>
         setRegistrandoComodo(false);
     }
 
+    const handleSaveEspaco = (event : any) => {
+        event.preventDefault();
+        onSaveEspaco({...espaco, quantidadeComodos: espaco.comodos.length});
+    }
+
+    const handleSaveComodo = (comodo : Comodo) => {
+        setEspaco({
+            ...espaco,
+            comodos : [...espaco.comodos, comodo]
+        })
+        setRegistrandoComodo(false);
+    }
+
     return (
+        <>
         <form onChange={handleEspacoChange}>
-            <FormularioTitulo>Detalhes sobre o seu espaço</FormularioTitulo>
+            <Grid container spacing={2}>
+                <Grid item  xs={8}>
+                    <InputText>Tipo: </InputText>
+                    <select name="tipo" defaultValue="">
+                        <option value="APARTAMENTO">Apartamento</option>
+                        <option value="ESCRITORIO">Escritório</option>
+                        <option value="PONTO_COMERCIAL">Ponto comercial</option>
+                    </select>
+                </Grid>
 
-            <InputText>Tamanho em metros quadrados</InputText>
-            <NumberInput name="metrosQuadrados" larguraMinima/>
+                <Grid item xs={4}>
+                    <InputText>Tamanho em metros quadrados: </InputText>
+                    <NumberInput 
+                        name="metrosQuadrados"
+                        placeholder="ex: 14"
+                        larguraMinima
+                    />
+                </Grid>
 
-            <InputText>Andar</InputText>
-            <NumberInput name="andar" larguraMinima/>
+                <Grid item xs={2}>
+                    <InputText>Andar: </InputText>
+                    <NumberInput 
+                        name="andar" 
+                        placeholder="ex: 1"
+                        larguraMinima
+                    />
+                </Grid>
 
-            <select name="tipo" defaultValue="">
-                <option value="APARTAMENTO">Apartamento</option>
-                <option value="ESCRITORIO">Escritório</option>
-                <option value="PONTO_COMERCIAL">Ponto comercial</option>
+                <Grid item xs={2}>
+                    <InputText>Numero</InputText>
+                    <StringInput 
+                        name="numero" 
+                        placeholder="ex: 126 B"
+                        larguraMinima
+                    />
+                </Grid>
+            </Grid>
 
-            </select>
+        </form>
 
-            {!isRegistrandoComodo ? (
+        <FormularioTitulo>Registrar cômodos</FormularioTitulo>
+        {!isRegistrandoComodo ? (
                 <button onClick={handleRegistrarComodo}>Registrar comodo</button>
             ):(
                 <>
-                <Subtitle>Registre um cômodo</Subtitle> 
-
-                <InputText>Nome</InputText>
-                <StringInput name="nomeComodo"/>
-
-                <InputText>Metros quadrados</InputText>
-                <NumberInput name="metrosComodo"/>
-
-                <InputText>detalhes</InputText>
-                <StringInput name="detalhesComodo"/>
-
-                <button onClick={handleCancelarRegistroComodo}>Salvar</button>
+                <ComodoForm onSaveComodo={handleSaveComodo}/>
                 <button onClick={handleCancelarRegistroComodo}>Cancelar</button>
                 </>
             )}
-        </form>
+        
+        <button onClick={handleSaveEspaco}>Salvar Espaco</button>
+        </>
     )
 }
