@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormularioTitulo, InputText } from "./styles";
+import { FormularioTitulo, InputText, SelectDiv } from "./styles";
 import { NumberInput } from "../Input/NumberInput";
 import { SimpleImovel } from "../../../types/imovel";
 import { StringInput } from "../Input/StringInput";
@@ -25,13 +25,16 @@ export const ImovelForm = ({onImovelChange} : {onImovelChange : (imovel : Simple
 
     return (
         <form onChange={handleImovelChange}>
-            <FormularioTitulo>Tipo do imóvel</FormularioTitulo>
+            <FormularioTitulo>Comece com alguns detalhes</FormularioTitulo>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <select name="tipo" defaultValue="CASA" >
-                        <option value="CASA">Casa</option>
-                        <option value="EDIFICIO">Edificio</option>
-                    </select>
+                    <SelectDiv>
+                        <InputText>Tipo:</InputText>
+                        <select name="tipo" defaultValue="CASA" >
+                            <option value="CASA">Casa</option>
+                            <option value="EDIFICIO">Edificio</option>
+                        </select>
+                    </SelectDiv>
                 </Grid>
                 <Grid item xs={6}>
                     <InputText>Quantidade de andares: </InputText>

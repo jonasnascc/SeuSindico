@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-export const NumberInput = ({name, larguraMinima=false, placeholder=""} : {name:string, placeholder?:string, larguraMinima?:boolean}) => {
+type NumberInputProps = {
+    name:string, 
+    defaultValue ?: number,
+    placeholder?:string, 
+    larguraMinima?:boolean
+}
+
+export const NumberInput = ({name, larguraMinima=false, placeholder="", defaultValue = 0} : NumberInputProps) => {
+    const [value, setValue] = useState<number>(defaultValue);
+
+    useEffect(() => {
+        setValue(defaultValue);
+    }, [defaultValue])
+
+    const handleValueChange = (event : any) => {
+        setValue(event.target.value)
+    }
+
     return (
         <Input
             id={name}
             type="number"
             name={name}
             placeholder={placeholder}
+            value={value}
+            onChange={handleValueChange}
             $larguraMinima={larguraMinima}
         />
     )

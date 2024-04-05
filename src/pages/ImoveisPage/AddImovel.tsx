@@ -8,8 +8,9 @@ import { EnderecoForm } from "../../shared/components/AddImovelForm/EnderecoForm
 import { Endereco, Espaco, Imovel, SimpleImovel } from "../../types/imovel";
 import { EspacoForm } from "../../shared/components/AddImovelForm/EspacoForm";
 import { ImovelForm } from "../../shared/components/AddImovelForm/ImovelForm";
-import { FormularioTitulo } from "../../shared/components/AddImovelForm/styles";
+import { FormButton, FormularioTitulo, FullWidthButtonDiv } from "../../shared/components/AddImovelForm/styles";
 import { AddImovelBody } from "./styles";
+import { EspacosTags } from "../../shared/components/AddImovelForm/EspacosTags";
 
 export const AddImovel = () => {
     const [imovel, setImovel] = useState<Imovel>({
@@ -23,6 +24,7 @@ export const AddImovel = () => {
         tipo: ""
     });
     const [isRegistrandoEspaco, setRegistrandoEspaco] = useState(false); 
+    const [espacoSelecionado, setEspacoSelecionado] = useState<Espaco|null>(null);
 
     useEffect(() => {
         console.log(imovel)
@@ -37,6 +39,7 @@ export const AddImovel = () => {
     const handleCancelarRegistroEspaco = (event : any) => {
         event.preventDefault();
         setRegistrandoEspaco(false);
+        setEspacoSelecionado(null);
     }
 
     const handleEnderecoChange = (novoValor : Endereco) => {
@@ -47,11 +50,13 @@ export const AddImovel = () => {
     }
 
     const handleAddEspaco = (novoValor : Espaco) => {
-        setImovel({
-            ...imovel,
-            espacos : [...imovel.espacos, novoValor]
-        })
-        setRegistrandoEspaco(false);
+        if(imovel.espacos.filter(espaco => espaco.numero === novoValor.numero).length === 0) {
+            setImovel({
+                ...imovel,
+                espacos : [...imovel.espacos, novoValor]
+            })
+            setRegistrandoEspaco(false);
+        }
     }
 
     const handleImovelChange = (newImovel : SimpleImovel) => {
@@ -60,26 +65,40 @@ export const AddImovel = () => {
             ...newImovel
         });
     }
-    return (
-        <AddImovelBody>
-            <SectionHeader label="Adicionar Imóvel"/>
 
+    const handleSelectEspaco = (espaco : Espaco) => {
+        setRegistrandoEspaco(false);
+        setEspacoSelecionado(espaco);
+    }
+
+    return (
+        <>
+        <SectionHeader label="Adicionar Imóvel"/>
+        <AddImovelBody>
             <ImovelForm onImovelChange={handleImovelChange}/>
 
             <EnderecoForm onFormChange={handleEnderecoChange}/>
 
-            <FormularioTitulo>Seu espaço</FormularioTitulo>
+            <FormularioTitulo>Espaços</FormularioTitulo>
+
+            <EspacosTags espacos={imovel.espacos} onSelectEspaco={handleSelectEspaco}/>
 
             {
-                !isRegistrandoEspaco ? (
-                    <button onClick={handleRegistrarEspaco}> Registrar um espaco </button>
+                !(isRegistrandoEspaco || espacoSelecionado) ? (
+                    <FullWidthButtonDiv>
+                        <FormButton onClick={handleRegistrarEspaco}> Registrar um espaco </FormButton>
+                    </FullWidthButtonDiv>
                 ) : (
                     <>
-                    <EspacoForm onSaveEspaco={handleAddEspaco}/>
-                    <button onClick={handleCancelarRegistroEspaco}> Cancelar Tudo </button>
+                        <EspacoForm 
+                            value = {espacoSelecionado}
+                            onSaveEspaco={handleAddEspaco} 
+                            onCancel={handleCancelarRegistroEspaco}
+                        />
                     </>
                 )
             }
         </AddImovelBody>
+        </>
     )
 }
