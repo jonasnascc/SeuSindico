@@ -5,8 +5,9 @@ import { PagesList } from "../../shared/components/HomePagesList/PagesList";
 
 export const HomePage = () => {
     return (
-        <PageContainer>
-            <PagesList/>
-        </PageContainer>
+        null
+        // <PageContainer>
+        //     <PagesList/>
+        // </PageContainer>
     )
 }
