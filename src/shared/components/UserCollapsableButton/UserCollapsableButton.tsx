@@ -8,8 +8,12 @@ export const UserCollapsableButton = () => {
     const {user} = useContext(AuthContext);
     const [expanded, setExpanded] = useState(false);
 
-    const handleButtonClick = () => {
-        setExpanded(value => !value);
+    const handleMouseEnter = () => {
+        setExpanded(true);
+    }
+
+    const handleMouseLeave = () => {
+        setExpanded(false);
     }
 
     return(
@@ -17,7 +21,7 @@ export const UserCollapsableButton = () => {
         {
             user ? (
                 <ButtonDiv>
-                    <CollapsableDiv onClick={handleButtonClick}>
+                    <CollapsableDiv onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                         <Username>{user.nome + " Nascimento"}</Username>
                         <UserAvatar $size="40px"/>
                         <ExpandMoreTile>

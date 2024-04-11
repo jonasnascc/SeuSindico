@@ -7,7 +7,7 @@ export const Bar = styled.div`
     z-index: 100;
     height: 80px;
     width: 100%;
-    background-color: rgb(243, 243, 243);
+    background-color: #F0F0F0;
 `
 
 export const LogoContainer = styled.div`
