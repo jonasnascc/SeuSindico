@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { SectionHeader } from "../../shared/components/SectionHeader/SectionHeader";
@@ -8,10 +8,12 @@ import { getUserImoveis } from "../../api/services/Imoveis";
 import { ImoveisTable } from "../../shared/components/ImoveisTable/ImoveisTable";
 
 import SearchIcon from '@mui/icons-material/Search';
-import { ActionButtons } from "../../shared/components/ActionButtons/ActionButtons";
+import { AddImovelButton } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 export const ImoveisPage = () => {
     const {user} = useContext(AuthContext);
+    const navigate = useNavigate();
     const imoveisReq = useQuery(["imoveis"], () => getUserImoveis());
 
     const [pesquisaValue, setPesquisaValue] = useState<string | null>(null);
@@ -25,21 +27,30 @@ export const ImoveisPage = () => {
             setPesquisaValue(() => event.target.value);
         }
     } 
+
+    const handleAddImovel = () => {
+        navigate("adicionar")
+    }
     
     if(user === null) return null;
     return (
-        <ImoveisDiv>
-            <SectionHeader label="Meus imóveis"/>
-            <ActionButtons/>
-            <SearchDiv>
-                Pesquise por uma palavra chave:
-                <Pesquisa>
-                    <CaixaPesquisa onChange={handlePesquisaChange}/>
-                    <SearchButton><SearchIcon/></SearchButton>
-                </Pesquisa>
-            </SearchDiv>
-            <ImoveisTable imoveis={data} searchValue={pesquisaValue}/>
-        </ImoveisDiv>
+        <Container>
+            <ImoveisDiv>
+                <SectionHeader label="Meus imóveis">
+                    <AddImovelButton onClick={handleAddImovel}>Adicionar</AddImovelButton>
+                    <AddImovelButton onClick={handleAddImovel}>Adicionar</AddImovelButton>
+                    <AddImovelButton onClick={handleAddImovel}>Adicionar</AddImovelButton>
+                </SectionHeader>
+                <SearchDiv>
+                    Pesquise por uma palavra chave:
+                    <Pesquisa>
+                        <CaixaPesquisa onChange={handlePesquisaChange}/>
+                        <SearchButton><SearchIcon/></SearchButton>
+                    </Pesquisa>
+                </SearchDiv>
+                <ImoveisTable imoveis={data} searchValue={pesquisaValue}/>
+            </ImoveisDiv>
+        </Container>
     )
 }
 
