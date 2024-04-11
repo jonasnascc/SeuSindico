@@ -38,8 +38,6 @@ export const ImoveisPage = () => {
             <ImoveisDiv>
                 <SectionHeader label="Meus imóveis">
                     <AddImovelButton onClick={handleAddImovel}>Adicionar</AddImovelButton>
-                    <AddImovelButton onClick={handleAddImovel}>Adicionar</AddImovelButton>
-                    <AddImovelButton onClick={handleAddImovel}>Adicionar</AddImovelButton>
                 </SectionHeader>
                 <SearchDiv>
                     Pesquise por uma palavra chave:
