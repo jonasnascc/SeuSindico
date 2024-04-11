@@ -3,12 +3,13 @@ import LogoURL from "../../../logo.svg"
 import { Bar, Logo, LogoContainer, LogoText } from "./styles";
 import { Grid } from "@mui/material";
 import { NavigationMenu } from "../NavigationMenu/NavigationMenu";
+import { UserCollapsableButton } from "../UserCollapsableButton/UserCollapsableButton";
 
 export const NavigationBar = () => {
     return(
         <Bar>
-            <Grid container>
-                <Grid item height={"100%"} xs={3}>
+            <Grid container height={"100%"}>
+                <Grid item xs={3}>
                     <LogoContainer>
                         <Logo src={LogoURL}/>
                         <LogoText>SeuSindico</LogoText>
@@ -18,7 +19,7 @@ export const NavigationBar = () => {
                     <NavigationMenu/>
                 </Grid>
                 <Grid item xs={3}>
-                    User
+                    <UserCollapsableButton/>
                 </Grid>
             </Grid>
         </Bar>

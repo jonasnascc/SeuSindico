@@ -3,9 +3,11 @@ import styled from "styled-components";
 export const Menu = styled.ul`
     display: flex;
     padding: 0;
+    margin: 0;
     list-style: none;
     align-items: center;
     justify-content: space-evenly;
+    height: 100%;
 `
 
 export const MenuItem = styled.li<{$selected?:boolean}>`
