@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import logo from "../../logo.svg"
-import { Form, FormContainer, InputText, LoginText, Logo } from "../../shared/components/Auth/styles";
+import { AuthButton, AuthFormInput, AuthFormSelect, Form, FormContainer, InputText, LoginText, Logo } from "../../shared/components/Auth/styles";
 import { AuthContext } from "../../context/auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -48,58 +48,61 @@ export const SignupPage = () => {
  
 
     return (
-        <FormContainer>
-            <Form method="POST" action="/auth/signup" onChange={handleChange}>
-                <Logo src={logo} alt="logo"/>
-                <LoginText>Cadastre-se</LoginText>
+        <Form method="POST" action="/auth/signup" onChange={handleChange}>
+            <Logo src={logo} alt="logo"/>
+            <LoginText>Cadastre-se</LoginText>
 
-                <InputText>Nome</InputText>     
-                <input 
-                    className="center-text" 
-                    type="text" id="nome" 
-                    name="nome" 
-                    onChange={() => null}
-                />
+            <InputText>Nome</InputText>     
+            <AuthFormInput 
+                className="center-text" 
+                type="text" id="nome" 
+                name="nome" 
+                onChange={() => null}
+                placeholder="Digite seu nome completo"
+            />
 
-                <InputText>Email</InputText>     
-                <input 
-                    className="center-text" 
-                    type="text" id="email" 
-                    name="email" 
-                    onChange={() => null}
-                />
+            <InputText>Email</InputText>     
+            <AuthFormInput 
+                className="center-text" 
+                type="text" id="email" 
+                name="email" 
+                onChange={() => null}
+                placeholder="Digite seu email"
+            />
 
-                <InputText>CPF</InputText>     
-                <input 
-                    className="center-text" 
-                    type="text" id="cpf" 
-                    name="cpf" 
-                    onChange={() => null}
-                />
+            <InputText>CPF</InputText>     
+            <AuthFormInput 
+                className="center-text" 
+                type="text" id="cpf" 
+                name="cpf" 
+                onChange={() => null}
+                placeholder="Digite seu cpf"
+            />
 
-                <InputText>Senha</InputText>        
-                <input 
-                    className="center-text" 
-                    type="password" 
-                    id="senha" 
-                    name="senha" 
-                    autoComplete="on" 
-                    onChange={() => null}
-                />
- 
-                <InputText>Tipo de usuário</InputText>
-                <select defaultValue={"OCUPANTE"} name="role">
-                    <option value={"OCUPANTE"}>Ocupante</option>
-                    <option value={"PROPRIETARIO"}>Proprietario</option>
-                </select>
+            <InputText>Senha</InputText>        
+            <AuthFormInput 
+                className="center-text" 
+                type="password" 
+                id="senha" 
+                name="senha" 
+                autoComplete="on" 
+                onChange={() => null}
+                placeholder="Digite sua senha"
+            />
 
-                <button 
-                    className="signup full-width" 
-                    onClick={handleSubmit}
-                >
-                    Cadastrar
-                </button>
-            </Form>
-        </FormContainer>
+            <InputText>Tipo de usuário</InputText>
+            <AuthFormSelect defaultValue={"OCUPANTE"} name="role">
+                <option value={"OCUPANTE"}>Ocupante</option>
+                <option value={"PROPRIETARIO"}>Proprietario</option>
+            </AuthFormSelect>
+
+            <AuthButton
+                $color="secondary"
+                className="signup full-width" 
+                onClick={handleSubmit}
+            >
+                Cadastrar
+            </AuthButton>
+        </Form>
     )
 }

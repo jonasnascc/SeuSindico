@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import logo from "../../logo.svg"
 import { AuthContext } from "../../context/auth/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { ErrorMessage, Form, FormContainer, InputText, LoginText, Logo } from "../../shared/components/Auth/styles";
+import { AuthBody, AuthButton, AuthCard, AuthFormInput, ErrorMessage, Form, FormContainer, InputText, LoginText, Logo } from "../../shared/components/Auth/styles";
 
 export const LoginPage = () => {
     const auth = useContext(AuthContext);
@@ -43,45 +43,47 @@ export const LoginPage = () => {
     }
  
     return ( 
-        <FormContainer>
-            <Form method="POST" action="/api/auth/login" name="user">
-                <Logo src={logo} alt="logo"/>
-                <LoginText>Entre ou cadastre-se</LoginText>
-                {showErrorMessage&&<ErrorMessage>Login ou senha incorretos!</ErrorMessage>}
-                <InputText>Email ou CPF</InputText>     
-                <input 
-                    className="center-text" 
-                    type="text" id="login" 
-                    name="login" 
-                    onChange={handleLoginInput}
-                />
+        <Form method="POST" action="/api/auth/login" name="user">
+            <Logo src={logo} alt="logo"/>
+            <LoginText>Bem vindo ao SeuSindico. Entre ou cadastre-se.</LoginText>
+            {showErrorMessage&&<ErrorMessage>Login ou senha incorretos!</ErrorMessage>}
+            <InputText>Login</InputText>     
+            <AuthFormInput 
+                className="center-text" 
+                type="text" id="login" 
+                name="login" 
+                onChange={handleLoginInput}
+                placeholder="Digite seu email ou cpf"
+            />
 
-                <InputText>Senha</InputText>        
-                <input 
-                    className="center-text" 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    autoComplete="on" 
-                    onChange={handlePasswordInput}
-                />
+            <InputText>Senha</InputText>        
+            <AuthFormInput 
+                className="center-text" 
+                type="password" 
+                id="password" 
+                name="password" 
+                autoComplete="on" 
+                onChange={handlePasswordInput}
+                placeholder="Digite sua senha"
+            />
 
-                <button 
-                    className="login full-width" 
-                    type="submit" 
-                    onClick={handleLoginButton}
-                >
-                    Entrar
-                </button>
+            <AuthButton 
+                $color = "primary"
+                className="login full-width" 
+                type="submit" 
+                onClick={handleLoginButton}
+            >
+                Entrar
+            </AuthButton>
 
-                <button 
-                    className="signup full-width" 
-                    onClick={handleSignupButton}
-                >
-                    Cadastre-se
-                </button>
-            </Form>
-        </FormContainer>
+            <AuthButton 
+                $color = "secondary"
+                className="signup full-width" 
+                onClick={handleSignupButton}
+            >
+                Cadastre-se
+            </AuthButton>
+        </Form>
     )
 }
 

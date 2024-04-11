@@ -6,6 +6,7 @@ import { SignupPage } from './pages/SignupPage/Signup';
 import { HomePage } from './pages/HomePage/Home';
 import { ImoveisPage } from './pages/ImoveisPage/Imoveis';
 import { AddImovel } from './pages/ImoveisPage/AddImovel';
+import { AuthPage } from './shared/components/Auth/AuthPage';
 
 function App() {
   return (
@@ -13,8 +14,12 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout/>}>
           <Route index element={<HomePage/>}/>
-          <Route path='/login' element={<LoginPage/>}/>
-          <Route path='/signup' element={<SignupPage/>}/>
+          <Route path='/login' element={<AuthPage/>}>
+            <Route index element={<LoginPage/>}/>
+          </Route>
+          <Route path='/signup' element={<AuthPage/>}>
+            <Route index element={<SignupPage/>}/>
+          </Route>
           <Route path='/imoveis'>
             <Route index element={<ImoveisPage/>} />
             <Route path='adicionar' element={<AddImovel/>}/>
