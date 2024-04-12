@@ -8,7 +8,7 @@ import { getUserImoveis } from "../../api/services/Imoveis";
 import { ImoveisTable } from "../../shared/components/ImoveisTable/ImoveisTable";
 
 import SearchIcon from '@mui/icons-material/Search';
-import { AddImovelButton } from "./styles";
+import { AddImovelButton, Search, SearchButton, SearchDiv, SearchInput, SearchText } from "./styles";
 import { useNavigate } from "react-router-dom";
 
 export const ImoveisPage = () => {
@@ -35,41 +35,22 @@ export const ImoveisPage = () => {
     if(user === null) return null;
     return (
         <Container>
-            <ImoveisDiv>
-                <SectionHeader label="Meus imóveis">
-                    <AddImovelButton onClick={handleAddImovel}>Adicionar</AddImovelButton>
-                </SectionHeader>
-                <SearchDiv>
-                    Pesquise por uma palavra chave:
-                    <Pesquisa>
-                        <CaixaPesquisa onChange={handlePesquisaChange}/>
-                        <SearchButton><SearchIcon/></SearchButton>
-                    </Pesquisa>
-                </SearchDiv>
-                <ImoveisTable imoveis={data} searchValue={pesquisaValue}/>
-            </ImoveisDiv>
+            <SectionHeader label="Meus imóveis">
+                <AddImovelButton onClick={handleAddImovel}>Adicionar</AddImovelButton>
+            </SectionHeader>
+            <SearchDiv>
+                <SearchText>Pesquisar: </SearchText>
+                <Search>
+                    <SearchInput 
+                        onChange={handlePesquisaChange}
+                        placeholder="Pesquise por palavras-chave"
+                    />
+                    {/* <SearchButton>
+                        <SearchIcon/>
+                    </SearchButton> */}
+                </Search>
+            </SearchDiv>
+            <ImoveisTable imoveis={data} searchValue={pesquisaValue}/>
         </Container>
     )
 }
-
-const ImoveisDiv = styled.div`
-
-`
-
-const SearchDiv = styled.div`
-    margin: 10px 0;
-`
-
-const Pesquisa = styled.div`
-    display: flex;
-    align-items: center;
-`
-
-const CaixaPesquisa = styled.input`
-    border: none;
-    padding: 10px;
-`
-
-const SearchButton = styled.button`
-
-`
