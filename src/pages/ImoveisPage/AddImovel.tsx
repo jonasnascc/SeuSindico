@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Endereco, Espaco, Imovel, SimpleImovel } from "../../types/imovel";
 import { NameForm } from "../../shared/components/ImovelForm/NameForm";
 import { ImovelDataForm } from "../../shared/components/ImovelForm/ImovelDataForm";
+import { EnderecoForm } from "../../shared/components/ImovelForm/EnderecoForm";
 
 export const AddImovel = () => {
     const [imovel, setImovel] = useState<Imovel>({
@@ -12,7 +13,15 @@ export const AddImovel = () => {
         descricao: "",
         quantidadeAndares: null,
         espacosPorAndar: null,
-        endereco: null,
+        endereco: {
+            rua: "",
+            numero: null,
+            bairro: "",
+            cidade: "",
+            estado: "",
+            cep: "",
+            complemento: ""
+        },
         espacos: [],
         tipo: ""
     });
@@ -64,8 +73,16 @@ export const AddImovel = () => {
         setEspacoSelecionado(espaco);
     }
 
-    const handleFormChange = (event: any) => {
-        setImovel({
+    const handleFormChange = (event: any, forProp ?: string) => {
+        if(forProp) {
+            const obj : any = imovel[forProp as keyof typeof imovel];
+            obj[event.target.name] = event.target.value;
+            setImovel({
+                ...imovel,
+                [forProp] : obj
+            })
+        }
+        else setImovel({
             ...imovel,
             [event.target.name] : event.target.value
         })
@@ -73,9 +90,12 @@ export const AddImovel = () => {
 
     return (
         <Container>
-            <SectionHeader label="Adicionar Imóvel"/>
-            <ImovelDataForm onChange={handleFormChange}/>
-            <NameForm onChange={handleFormChange}/>
+            <div style={{paddingBottom: "45px"}}>
+                <SectionHeader label="Adicionar Imóvel"/>
+                <ImovelDataForm onChange={handleFormChange}/>
+                <NameForm onChange={handleFormChange}/>
+                <EnderecoForm onChange={(event:any) => handleFormChange(event, "endereco")}/>
+            </div>
         </Container>
     )
 }

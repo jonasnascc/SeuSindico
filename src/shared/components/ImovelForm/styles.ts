@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-export const ImovelFormCard = styled.div`
+export const ImovelFormCard = styled.form`
     position: relative;
-    height: 250px;
     padding: 1vw;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -17,18 +16,29 @@ export const FormDescription = styled.h3`
     width: 100%;
 `
 
+export const CenteredAlignedFormDescription = styled(FormDescription)`
+    text-align: center;
+`
+
 export const InputLabel = styled.span`
     font-weight: 400;
     margin: 10px;
 `
 
-export const FormGridTile = styled.form`
+export const FormGridTile = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    min-height: 250px;
     padding: 1vw;
+`
+
+export const FormGridTileVerticalDirection = styled(FormGridTile)`
+    flex-direction: row;
+    min-height: auto;
+    height: auto;
+    padding: auto 0;
 `
 
 export const NameInput = styled.input`
@@ -48,3 +58,4 @@ export const DescricaoTextArea = styled.textarea`
     width: 100%;
     flex: 1;
 `
+
