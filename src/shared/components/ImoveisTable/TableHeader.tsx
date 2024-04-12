@@ -17,8 +17,7 @@ export const TableHeader = ({items} : {items:string[]}) => {
 }
 
 const Header = styled.thead`
-    background-color: #ff8533;
-    color: white;
+    color: #02947C;
 `
 
 const HeaderRow = styled.tr`
@@ -29,4 +28,5 @@ const HeaderColumn = styled.th`
     padding: 5px 0;
     padding-left: 25px;
     font-weight: 500;
+    font-size: 12;
 `
