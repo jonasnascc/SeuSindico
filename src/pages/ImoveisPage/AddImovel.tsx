@@ -1,16 +1,8 @@
 import { SectionHeader } from "../../shared/components/SectionHeader/SectionHeader";
-import { Divider, Grid } from "@mui/material"
-import styled from "styled-components"
-import { StringInput } from "../../shared/components/Input/StringInput"
-import { NumberInput } from "../../shared/components/Input/NumberInput"
+import { Container } from "@mui/material"
 import { useEffect, useState } from "react"
-import { EnderecoForm } from "../../shared/components/AddImovelForm/EnderecoForm";
 import { Endereco, Espaco, Imovel, SimpleImovel } from "../../types/imovel";
-import { EspacoForm } from "../../shared/components/AddImovelForm/EspacoForm";
-import { ImovelForm } from "../../shared/components/AddImovelForm/ImovelForm";
-import { FormButton, FormularioTitulo, FullWidthButtonDiv } from "../../shared/components/AddImovelForm/styles";
-import { AddImovelBody } from "./styles";
-import { EspacosTags } from "../../shared/components/AddImovelForm/EspacosTags";
+import { NameForm } from "../../shared/components/ImovelForm/NameForm";
 
 export const AddImovel = () => {
     const [imovel, setImovel] = useState<Imovel>({
@@ -71,34 +63,17 @@ export const AddImovel = () => {
         setEspacoSelecionado(espaco);
     }
 
+    const handleFormChange = (event: any) => {
+        setImovel({
+            ...imovel,
+            [event.target.name] : event.target.value
+        })
+    }
+
     return (
-        <>
-        <SectionHeader label="Adicionar Imóvel"/>
-        <AddImovelBody>
-            <ImovelForm onImovelChange={handleImovelChange}/>
-
-            <EnderecoForm onFormChange={handleEnderecoChange}/>
-
-            <FormularioTitulo>Espaços</FormularioTitulo>
-
-            <EspacosTags espacos={imovel.espacos} onSelectEspaco={handleSelectEspaco}/>
-
-            {
-                !(isRegistrandoEspaco || espacoSelecionado) ? (
-                    <FullWidthButtonDiv>
-                        <FormButton onClick={handleRegistrarEspaco}> Registrar um espaco </FormButton>
-                    </FullWidthButtonDiv>
-                ) : (
-                    <>
-                        <EspacoForm 
-                            value = {espacoSelecionado}
-                            onSaveEspaco={handleAddEspaco} 
-                            onCancel={handleCancelarRegistroEspaco}
-                        />
-                    </>
-                )
-            }
-        </AddImovelBody>
-        </>
+        <Container>
+            <SectionHeader label="Adicionar Imóvel"/>
+            <NameForm onChange={handleFormChange}/>
+        </Container>
     )
 }
