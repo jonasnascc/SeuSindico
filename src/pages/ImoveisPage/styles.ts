@@ -27,7 +27,7 @@ export const Search = styled.div`
 export const SearchDiv = styled.div`
     display: flex;
     align-items: center;
-    margin: 10px 0;
+    margin: 25px 0;
     padding: 0 22%;
     width: 100%;
     gap: 5px;
