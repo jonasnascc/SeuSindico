@@ -3,6 +3,7 @@ import { Container } from "@mui/material"
 import { useEffect, useState } from "react"
 import { Endereco, Espaco, Imovel, SimpleImovel } from "../../types/imovel";
 import { NameForm } from "../../shared/components/ImovelForm/NameForm";
+import { ImovelDataForm } from "../../shared/components/ImovelForm/ImovelDataForm";
 
 export const AddImovel = () => {
     const [imovel, setImovel] = useState<Imovel>({
@@ -73,6 +74,7 @@ export const AddImovel = () => {
     return (
         <Container>
             <SectionHeader label="Adicionar Imóvel"/>
+            <ImovelDataForm onChange={handleFormChange}/>
             <NameForm onChange={handleFormChange}/>
         </Container>
     )
