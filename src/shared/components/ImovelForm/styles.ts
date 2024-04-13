@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import styled from "styled-components";
 
 export const ImovelFormCard = styled.form`
@@ -7,6 +8,7 @@ export const ImovelFormCard = styled.form`
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 10px;
     margin: 20px;
+    min-height: 280px;
 `
 
 export const FormDescription = styled.h3`
@@ -41,6 +43,12 @@ export const FormGridTileVerticalDirection = styled(FormGridTile)`
     padding: auto 0;
 `
 
+export const FormGridTileStackable = styled(FormGridTile)`
+    padding: 0;
+    min-height: auto;
+    height: 100%;
+    justify-content: space-between;
+`
 export const NameInput = styled.input`
     width: 90%;
     margin: 0 20%;
@@ -53,9 +61,52 @@ export const FormNumbersInput = styled.input`
     text-align: center;
 `
 
+export const TipoSelect = styled.select`
+    width: 33.3%;
+`
+
 export const DescricaoTextArea = styled.textarea`
     resize: none;
     width: 100%;
     flex: 1;
 `
 
+export const AddEspacoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+`
+
+export const AddEspacoText = styled.h4`
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 18px;
+`
+
+export const ClickableArea = styled.div`
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+
+        
+    color: #4B31A1;
+
+    &:hover {
+        color: #FC7300;
+    }
+    /* &:active {
+        background-color: rgba(0,0,0,.1);
+    } */
+`
+
+export const FadeContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+`

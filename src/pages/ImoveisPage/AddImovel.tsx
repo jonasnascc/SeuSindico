@@ -5,6 +5,7 @@ import { Endereco, Espaco, Imovel, SimpleImovel } from "../../types/imovel";
 import { NameForm } from "../../shared/components/ImovelForm/NameForm";
 import { ImovelDataForm } from "../../shared/components/ImovelForm/ImovelDataForm";
 import { EnderecoForm } from "../../shared/components/ImovelForm/EnderecoForm";
+import { EspacosForm } from "../../shared/components/ImovelForm/EspacosForm";
 
 export const AddImovel = () => {
     const [imovel, setImovel] = useState<Imovel>({
@@ -95,6 +96,7 @@ export const AddImovel = () => {
                 <ImovelDataForm onChange={handleFormChange}/>
                 <NameForm onChange={handleFormChange}/>
                 <EnderecoForm onChange={(event:any) => handleFormChange(event, "endereco")}/>
+                <EspacosForm onSaveEspaco={(espaco:Espaco) => null}/>
             </div>
         </Container>
     )
