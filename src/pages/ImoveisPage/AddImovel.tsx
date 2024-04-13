@@ -1,11 +1,12 @@
 import { SectionHeader } from "../../shared/components/SectionHeader/SectionHeader";
-import { Container } from "@mui/material"
+import { Container, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
 import { Endereco, Espaco, Imovel, SimpleImovel } from "../../types/imovel";
 import { NameForm } from "../../shared/components/ImovelForm/NameForm";
 import { ImovelDataForm } from "../../shared/components/ImovelForm/ImovelDataForm";
 import { EnderecoForm } from "../../shared/components/ImovelForm/EnderecoForm";
 import { EspacosForm } from "../../shared/components/ImovelForm/EspacosForm";
+import { ImovelFormCard } from "../../shared/components/ImovelFormCard/ImovelFormCard";
 
 export const AddImovel = () => {
     const [imovel, setImovel] = useState<Imovel>({

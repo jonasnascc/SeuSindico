@@ -1,16 +1,6 @@
 import { Grid } from "@mui/material";
 import styled from "styled-components";
 
-export const ImovelFormCard = styled.form`
-    position: relative;
-    padding: 1vw;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 10px;
-    margin: 20px;
-    min-height: 280px;
-`
-
 export const FormDescription = styled.h3`
     font-weight: 500;
     font-size: 18px;
@@ -32,8 +22,8 @@ export const FormGridTile = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 250px;
     padding: 1vw;
+    height: 100%;
 `
 
 export const FormGridTileVerticalDirection = styled(FormGridTile)`
@@ -67,8 +57,10 @@ export const TipoSelect = styled.select`
 
 export const DescricaoTextArea = styled.textarea`
     resize: none;
-    width: 100%;
-    flex: 1;
+    width: 90%;
+    margin: 0 20%;
+    height: 100%;
+    min-height: 140px;
 `
 
 export const AddEspacoContainer = styled.div`

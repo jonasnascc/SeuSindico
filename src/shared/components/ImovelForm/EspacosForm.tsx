@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { AddEspacoContainer, AddEspacoText, CenteredAlignedFormDescription, ClickableArea, FadeContainer, FormGridTile, FormGridTileStackable, FormNumbersInput, ImovelFormCard, InputLabel, TipoSelect } from "./styles";
+import { AddEspacoContainer, AddEspacoText, ClickableArea, FadeContainer, FormGridTile, FormNumbersInput, InputLabel, TipoSelect } from "./styles";
 import { Fade, Grid } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { Espaco } from "../../../types/imovel";
+import { ImovelFormCard } from "../ImovelFormCard/ImovelFormCard";
 
 type EspacosFormProps = {
     onSaveEspaco : (espaco: Espaco) => void
@@ -31,8 +32,12 @@ export const EspacosForm = ({onSaveEspaco} : EspacosFormProps) => {
     
 
     return (
-        <ImovelFormCard onChange={handleChange}>
-            <CenteredAlignedFormDescription>Adicione um espaço ao seu imóvel</CenteredAlignedFormDescription>
+        <ImovelFormCard
+            label = "Adicione um espaço ao seu imóvel"
+            headerGridScreens={{xs:12}}
+            bodyGridScreens={{xs:12}}
+        >
+        <form onChange={handleChange}>
             <FadeContainer>
                 <Fade in={displayPlusPage}  timeout={500} unmountOnExit>
                     <ClickableArea onClick={handleAddButton}>
@@ -45,8 +50,8 @@ export const EspacosForm = ({onSaveEspaco} : EspacosFormProps) => {
 
                 <Fade in={registrandoEspaco}  timeout={500} mountOnEnter>
                     <Grid container>
-                        <Grid item xs={12}>
-                            <FormGridTileStackable>
+                        <Grid item xs={12} sm={12}>
+                            <FormGridTile>
                                 <InputLabel>Em qual categoria seu espaço melhor se encaixa?</InputLabel>
                                 <TipoSelect name="tipo">
                                     <option value="CASA">Casa</option>
@@ -54,21 +59,21 @@ export const EspacosForm = ({onSaveEspaco} : EspacosFormProps) => {
                                     <option value="PONTO_COMERCIAL">Ponto comercial</option>
                                     <option value="ESCRITORIO">Escritório</option>
                                 </TipoSelect>
-                            </FormGridTileStackable>
+                            </FormGridTile>
                         </Grid>
-                        <Grid item xs={4}>
-                            <FormGridTileStackable>
-                            <InputLabel>Quantos metros quadrados tem seu espaço?</InputLabel>
+                        <Grid item xs={12} sm={4}>
+                            <FormGridTile>
+                                <InputLabel>Quantos metros quadrados tem seu espaço?</InputLabel>
                                 <FormNumbersInput
                                     type="number"
                                     id="metrosQuadrados"
                                     name="metrosQuadrados"
                                     placeholder="Ex.: 22.3"
                                 />
-                            </FormGridTileStackable>
+                            </FormGridTile>
                         </Grid>
-                        <Grid item xs={4}>
-                            <FormGridTileStackable>
+                        <Grid item xs={12} sm={4}>
+                            <FormGridTile>
                                 <InputLabel>Qual o número do seu espaço?</InputLabel>
                                 <FormNumbersInput
                                     type="number"
@@ -76,10 +81,10 @@ export const EspacosForm = ({onSaveEspaco} : EspacosFormProps) => {
                                     name="numero"
                                     placeholder="Ex.: 102 A"
                                 />
-                            </FormGridTileStackable>
+                            </FormGridTile>
                         </Grid>
-                        <Grid item xs={4}>
-                            <FormGridTileStackable>
+                        <Grid item xs={12} sm={4}>
+                            <FormGridTile>
                                 <InputLabel>Em qual andar fica seu espaço?</InputLabel>
                                 <FormNumbersInput
                                     type="number"
@@ -87,12 +92,14 @@ export const EspacosForm = ({onSaveEspaco} : EspacosFormProps) => {
                                     name="metrosQuadrados"
                                     placeholder="Ex.: 2"
                                 />
-                            </FormGridTileStackable>
+                            </FormGridTile>
                         </Grid>
                     </Grid>
                 </Fade>
             </FadeContainer>
 
+        </form>
         </ImovelFormCard>
+        
     )
 }

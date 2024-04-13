@@ -1,6 +1,7 @@
 import React from "react";
-import { FormDescription, FormGridTile, FormNumbersInput, ImovelFormCard, InputLabel } from "./styles";
+import { FormDescription, FormGridTile, FormNumbersInput, InputLabel } from "./styles";
 import { Grid } from "@mui/material";
+import { ImovelFormCard } from "../ImovelFormCard/ImovelFormCard";
 
 type ImovelDataFormProps = {
     onChange : (event: any) => void
@@ -8,14 +9,14 @@ type ImovelDataFormProps = {
 
 export const ImovelDataForm = ({onChange} : ImovelDataFormProps) => {
     return(
-        <ImovelFormCard onChange={onChange}>
-            <Grid container height="100%">
-                <Grid item xs={4}>
-                    <FormGridTile>
-                        <FormDescription>Vamos começar pelo básico</FormDescription>
-                    </FormGridTile>
-                </Grid>
-                <Grid item xs={4}>
+        <ImovelFormCard
+            label = "Vamos começar pelo básico"
+            headerGridScreens={{xs:12, sm:4}}
+            bodyGridScreens={{xs:12, sm:8}}
+        >
+        <form >
+            <Grid container flex={1}>
+                <Grid item xs={12} sm={6}>
                     <FormGridTile>
                         <InputLabel>Quantos andares o seu imóvel possui?</InputLabel>
                         <FormNumbersInput
@@ -33,10 +34,10 @@ export const ImovelDataForm = ({onChange} : ImovelDataFormProps) => {
                         />
                     </FormGridTile>
                 </Grid>
-                <Grid item xs={4}>
-                    
-                </Grid>
+                <Grid item xs={12} sm={6}></Grid>
             </Grid>
+        </form>
         </ImovelFormCard>
+        
     )
 }
