@@ -24,6 +24,7 @@ export const FormGridTile = styled.div`
     justify-content: center;
     padding: 1vw;
     height: 100%;
+    min-height: 100%;
 `
 
 export const FormGridTileVerticalDirection = styled(FormGridTile)`
@@ -68,19 +69,20 @@ export const AddEspacoContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-
+    flex: 1;
+    width: 100%;
 `
 
 export const AddEspacoText = styled.h4`
+    margin: auto;
     font-weight: 500;
     font-size: 16px;
     text-align: center;
-    margin: auto;
-    margin-bottom: 18px;
+    margin: 0;
 `
 
 export const ClickableArea = styled.div`
+    display: flex;
     width: 100%;
     height: 100%;
     cursor: pointer;
@@ -101,10 +103,12 @@ export const FadeContainer = styled.div`
     align-items: center;
     justify-content: center;
     height: 100%;
+    width: 100%;
 `
 
 export const RegistroEspacoContainer = styled.div`
     border: solid 1px rgba(0,0,0, .3);
+    border-radius: 10px;
     margin: 1vw;
     padding: 1vw;
 `

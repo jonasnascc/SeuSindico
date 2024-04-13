@@ -6,6 +6,7 @@ export const EspacoButtons = styled.div`
     flex-wrap: wrap-reverse;
     height: 100%;
     width: 100%;
+    margin: 10px 0;
     padding: 0 20px;
 `
 

@@ -66,75 +66,71 @@ export const EspacosForm = ({onSaveEspaco} : EspacosFormProps) => {
             headerGridScreens={{xs:12}}
             bodyGridScreens={{xs:12}}
         >
-        <form onChange={handleChange}>
-            <FadeContainer>
-                <Fade in={displayPlusPage}  timeout={500} mountOnEnter unmountOnExit>
-                    <ClickableArea onClick={handleAddButton}>
-                            <AddEspacoContainer>
-                                <AddIcon sx={{width:"70px", height:"70px"}}/>
-                                <AddEspacoText>Clique para adicionar um novo espaço</AddEspacoText>
-                            </AddEspacoContainer>
-                    </ClickableArea>
-                </Fade>
+        <FadeContainer>
+            <Fade in={displayPlusPage}  timeout={500} style={{margin:"0 10px"}} mountOnEnter unmountOnExit>
+                <ClickableArea onClick={handleAddButton}>
+                        <AddEspacoContainer>
+                            <div><AddIcon sx={{width:"70px", height:"70px"}}/></div>
+                            <AddEspacoText>Clique para adicionar um novo espaço</AddEspacoText>
+                        </AddEspacoContainer>
+                </ClickableArea>
+            </Fade>
 
-                <Fade in={registrandoEspaco}  timeout={500} mountOnEnter unmountOnExit>
-                    <RegistroEspacoContainer>
-                        <Grid container>
-                            <Grid item xs={12} sm={12}>
-                                <FormGridTile>
-                                    <InputLabel>Em qual categoria seu espaço melhor se encaixa?</InputLabel>
-                                    <TipoSelect name="tipo">
-                                        <option value="CASA">Casa</option>
-                                        <option value="APARTAMENTO">Apartamento</option>
-                                        <option value="PONTO_COMERCIAL">Ponto comercial</option>
-                                        <option value="ESCRITORIO">Escritório</option>
-                                    </TipoSelect>
-                                </FormGridTile>
-                            </Grid>
-                            <Grid item xs={12} sm={4}>
-                                <FormGridTile>
-                                    <InputLabel>Quantos metros quadrados tem seu espaço?</InputLabel>
-                                    <FormNumbersInput
-                                        type="number"
-                                        id="metrosQuadrados"
-                                        name="metrosQuadrados"
-                                        placeholder="Ex.: 22.3"
-                                    />
-                                </FormGridTile>
-                            </Grid>
-                            <Grid item xs={12} sm={4}>
-                                <FormGridTile>
-                                    <InputLabel>Qual o número do seu espaço?</InputLabel>
-                                    <FormNumbersInput
-                                        type="number"
-                                        id="numero"
-                                        name="numero"
-                                        placeholder="Ex.: 102 A"
-                                    />
-                                </FormGridTile>
-                            </Grid>
-                            <Grid item xs={12} sm={4}>
-                                <FormGridTile>
-                                    <InputLabel>Em qual andar fica seu espaço?</InputLabel>
-                                    <FormNumbersInput
-                                        type="number"
-                                        id="andar"
-                                        name="andar"
-                                        placeholder="Ex.: 2"
-                                    />
-                                </FormGridTile>
-                            </Grid>
-                            
+            <Fade in={registrandoEspaco}  timeout={500} style={{margin:"0 10px"}} mountOnEnter unmountOnExit>
+                <RegistroEspacoContainer  onChange={handleChange}>
+                    <Grid container>
+                        <Grid item xs={12} sm={12}>
+                            <FormGridTile>
+                                <InputLabel>Em qual categoria seu espaço melhor se encaixa?</InputLabel>
+                                <TipoSelect name="tipo">
+                                    <option value="CASA">Casa</option>
+                                    <option value="APARTAMENTO">Apartamento</option>
+                                    <option value="PONTO_COMERCIAL">Ponto comercial</option>
+                                    <option value="ESCRITORIO">Escritório</option>
+                                </TipoSelect>
+                            </FormGridTile>
                         </Grid>
-                        <EspacoFormButtons 
-                            visible = {registrandoEspaco}
-                            onSave = {handleSave}
-                        />
-                    </RegistroEspacoContainer>
-                </Fade>
-            </FadeContainer>
-
-        </form>
+                        <Grid item xs={12} sm={4}>
+                            <FormGridTile>
+                                <InputLabel>Quantos metros quadrados tem seu espaço?</InputLabel>
+                                <FormNumbersInput
+                                    type="number"
+                                    id="metrosQuadrados"
+                                    name="metrosQuadrados"
+                                    placeholder="Ex.: 22.3"
+                                />
+                            </FormGridTile>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <FormGridTile>
+                                <InputLabel>Qual o número do seu espaço?</InputLabel>
+                                <FormNumbersInput
+                                    type="number"
+                                    id="numero"
+                                    name="numero"
+                                    placeholder="Ex.: 102 A"
+                                />
+                            </FormGridTile>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <FormGridTile>
+                                <InputLabel>Em qual andar fica seu espaço?</InputLabel>
+                                <FormNumbersInput
+                                    type="number"
+                                    id="andar"
+                                    name="andar"
+                                    placeholder="Ex.: 2"
+                                />
+                            </FormGridTile>
+                        </Grid>
+                        
+                    </Grid>
+                    <EspacoFormButtons
+                        onSave = {handleSave}
+                    />
+                </RegistroEspacoContainer>
+            </Fade>
+        </FadeContainer>
         </ImovelFormCard>
         
     )
