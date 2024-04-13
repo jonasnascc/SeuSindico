@@ -34,11 +34,14 @@ export const CardHeader = styled.div`
 `
 
 export const CardBody = styled.div`
+    position: relative;
+    display: flex;
     height: 100%;
     min-height: 250px;
     margin-bottom: 25px;
 `
 
 export const CardFooter = styled.div`
+    position: relative;
     min-height: 40px;
 `
