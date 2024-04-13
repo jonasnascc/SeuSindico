@@ -47,6 +47,16 @@ export const AddImovel = () => {
         })
     }
 
+    const handleSaveEspaco = (espaco: Espaco) => {
+        const {espacos} = imovel;
+        if(espacos.filter(esp => esp.numero === espaco.numero).length === 0) {
+            setImovel({
+                ...imovel,
+                espacos : [...espacos, espaco]
+            })
+        }
+    }
+
     return (
         <Container>
             <div style={{paddingBottom: "45px"}}>
@@ -54,7 +64,7 @@ export const AddImovel = () => {
                 <ImovelDataForm onChange={handleFormChange}/>
                 <NameForm onChange={handleFormChange}/>
                 <EnderecoForm onChange={(event:any) => handleFormChange(event, "endereco")}/>
-                <EspacosForm onSaveEspaco={(espaco:Espaco) => null}/>
+                <EspacosForm onSaveEspaco={handleSaveEspaco}/>
             </div>
         </Container>
     )

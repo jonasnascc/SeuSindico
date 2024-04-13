@@ -34,9 +34,9 @@ export const CardHeader = styled.div`
 `
 
 export const CardBody = styled.div`
-    padding: 1vw;
     height: 100%;
     min-height: 250px;
+    margin-bottom: 25px;
 `
 
 export const CardFooter = styled.div`

@@ -102,3 +102,9 @@ export const FadeContainer = styled.div`
     justify-content: center;
     height: 100%;
 `
+
+export const RegistroEspacoContainer = styled.div`
+    border: solid 1px rgba(0,0,0, .3);
+    margin: 1vw;
+    padding: 1vw;
+`
