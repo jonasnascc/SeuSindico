@@ -6,7 +6,6 @@ import { NameForm } from "../../shared/components/ImovelForm/NameForm";
 import { ImovelDataForm } from "../../shared/components/ImovelForm/ImovelDataForm";
 import { EnderecoForm } from "../../shared/components/ImovelForm/EnderecoForm";
 import { EspacosForm } from "../../shared/components/ImovelForm/EspacosForm";
-import { ImovelFormCard } from "../../shared/components/ImovelFormCard/ImovelFormCard";
 
 export const AddImovel = () => {
     const [imovel, setImovel] = useState<Imovel>({
@@ -27,53 +26,11 @@ export const AddImovel = () => {
         espacos: [],
         tipo: ""
     });
-    const [isRegistrandoEspaco, setRegistrandoEspaco] = useState(false); 
-    const [espacoSelecionado, setEspacoSelecionado] = useState<Espaco|null>(null);
 
     useEffect(() => {
         console.log(imovel)
     } , [imovel])
 
-
-    const handleRegistrarEspaco = (event : any) => {
-        event.preventDefault();
-        setRegistrandoEspaco(true);
-    }
-
-    const handleCancelarRegistroEspaco = (event : any) => {
-        event.preventDefault();
-        setRegistrandoEspaco(false);
-        setEspacoSelecionado(null);
-    }
-
-    const handleEnderecoChange = (novoValor : Endereco) => {
-        setImovel({
-            ...imovel,
-            endereco : novoValor
-        })
-    }
-
-    const handleAddEspaco = (novoValor : Espaco) => {
-        if(imovel.espacos.filter(espaco => espaco.numero === novoValor.numero).length === 0) {
-            setImovel({
-                ...imovel,
-                espacos : [...imovel.espacos, novoValor]
-            })
-            setRegistrandoEspaco(false);
-        }
-    }
-
-    const handleImovelChange = (newImovel : SimpleImovel) => {
-        setImovel({
-            ...imovel,
-            ...newImovel
-        });
-    }
-
-    const handleSelectEspaco = (espaco : Espaco) => {
-        setRegistrandoEspaco(false);
-        setEspacoSelecionado(espaco);
-    }
 
     const handleFormChange = (event: any, forProp ?: string) => {
         if(forProp) {
