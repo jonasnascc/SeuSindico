@@ -1,7 +1,7 @@
-import { Grid, InputLabel } from "@mui/material";
+import { Grid } from "@mui/material";
 import React from "react";
 import { EspacoFormButtons } from "../../EspacoFormButtons.tsx/EspacoFormButtons";
-import { RegistroEspacoContainer, FormGridTile, TipoSelect, FormNumbersInput } from "../styles";
+import { RegistroEspacoContainer, FormGridTile, TipoSelect, FormNumbersInput, InputLabel } from "../styles";
 import { Espaco } from "../../../../types/imovel";
 
 type RegistroEspacoScreen = {
@@ -16,7 +16,7 @@ export const RegistroEspacoScreen = ({onFormChange, onSaveEspaco, onCancel, visi
     return(
         <RegistroEspacoContainer  onChange={onFormChange}>
                 <Grid container>
-                    <Grid item xs={12} sm={12}>
+                    <Grid item xs={6} sm={12}>
                         <FormGridTile>
                             <InputLabel>Em qual categoria seu espaço melhor se encaixa?</InputLabel>
                             <TipoSelect name="tipo">
@@ -60,7 +60,17 @@ export const RegistroEspacoScreen = ({onFormChange, onSaveEspaco, onCancel, visi
                             />
                         </FormGridTile>
                     </Grid>
-                    
+                    <Grid item xs={6} sm={12} p="0 2vw">
+                        <FormGridTile>
+                            <InputLabel>Digite um nome para seu espaço</InputLabel>
+                            <input
+                                type="text"
+                                name="nome"
+                                id="nome"
+                                placeholder="Digite o nome do seu espaço"
+                            />
+                        </FormGridTile>
+                    </Grid>
                 </Grid>
                 <EspacoFormButtons
                     onSave = {onSaveEspaco}

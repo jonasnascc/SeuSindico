@@ -28,6 +28,7 @@ export type Endereco = {
 }
 
 export type Espaco = {
+    nome: string,
     tipo: "CASA" | "APARTAMENTO" | "ESCRITORIO" | "PONTO_COMERCIAL"
     espacoId: number | null,
     andar: number | null,

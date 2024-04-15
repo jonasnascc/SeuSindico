@@ -14,6 +14,7 @@ type EspacosFormProps = {
 }
 
 const EspacoVazio : Espaco = {
+    nome: "",
     tipo: "CASA",
     espacoId: null,
     andar: null,
