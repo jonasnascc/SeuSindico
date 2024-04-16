@@ -25,7 +25,7 @@ export const CardHeader = styled.div`
     flex: 1;
         
     font-weight: 500;
-    font-size: 18px;
+    font-size: 20px;
     color: #02947C;
     text-align: center;
 

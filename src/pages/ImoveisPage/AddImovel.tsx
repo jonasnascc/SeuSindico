@@ -1,7 +1,7 @@
 import { SectionHeader } from "../../shared/components/SectionHeader/SectionHeader";
 import { Container, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
-import { Endereco, Espaco, Imovel, SimpleImovel } from "../../types/imovel";
+import { Comodo, Endereco, Espaco, Imovel, SimpleImovel } from "../../types/imovel";
 import { NameForm } from "../../shared/components/ImovelForm/NameForm";
 import { ImovelDataForm } from "../../shared/components/ImovelForm/ImovelDataForm";
 import { EnderecoForm } from "../../shared/components/ImovelForm/EnderecoForm";
@@ -57,6 +57,20 @@ export const AddImovel = () => {
         }
     }
 
+    const handleAddComodo = (espaco:Espaco, comodo: Comodo) => {
+        const espacoImv = imovel.espacos.filter(esp => esp.numero === espaco.numero);
+        if(espacoImv.length > 0) {
+            espacoImv.forEach(esp => esp.comodos = [...esp.comodos, comodo]);
+            setImovel({
+                ...imovel, 
+                espacos : [
+                    ...imovel.espacos.filter(esp => esp.numero !== espaco.numero),
+                    ...espacoImv
+                ]
+            })
+        }
+    }
+
     return (
         <Container>
             <div style={{paddingBottom: "45px"}}>
@@ -64,7 +78,11 @@ export const AddImovel = () => {
                 <ImovelDataForm onChange={handleFormChange}/>
                 <NameForm onChange={handleFormChange}/>
                 <EnderecoForm onChange={(event:any) => handleFormChange(event, "endereco")}/>
-                <EspacosForm onSaveEspaco={handleSaveEspaco} espacos={imovel.espacos}/>
+                <EspacosForm 
+                    onSaveEspaco={handleSaveEspaco} 
+                    espacos={imovel.espacos}
+                    onAddComodo={handleAddComodo}
+                />
             </div>
         </Container>
     )

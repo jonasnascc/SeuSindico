@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AddEspacoContainer, AddEspacoText, ClickableArea, FadeContainer, FormGridTile, FormNumbersInput, InputLabel, RegistroEspacoContainer, TipoSelect } from "../styles";
 import { Fade, Grid } from "@mui/material";
-import { Espaco } from "../../../../types/imovel";
+import { Comodo, Espaco } from "../../../../types/imovel";
 import { ImovelFormCard } from "../../ImovelFormCard/ImovelFormCard";
 import { EspacoFormButtons } from "../../EspacoFormButtons.tsx/EspacoFormButtons";
 import { EspacosListScreen } from "./EspacosList/EspacosListScreen";
@@ -10,7 +10,8 @@ import { RegistroEspacoScreen } from "./RegistroEspacoScreen";
 
 type EspacosFormProps = {
     onSaveEspaco : (espaco: Espaco) => void,
-    espacos : Espaco[]
+    espacos : Espaco[],
+    onAddComodo : (espaco: Espaco, comodo:Comodo) => void
 }
 
 const EspacoVazio : Espaco = {
@@ -24,7 +25,7 @@ const EspacoVazio : Espaco = {
     comodos: []
 }
 
-export const EspacosForm = ({onSaveEspaco, espacos} : EspacosFormProps) => {
+export const EspacosForm = ({onSaveEspaco, espacos, onAddComodo} : EspacosFormProps) => {
     const [displayPlusPage, setDisplayPlusPage] = useState(espacos.length===0);
     const [registrandoEspaco, setRegistrandoEspaco] = useState(false);
 
@@ -75,6 +76,7 @@ export const EspacosForm = ({onSaveEspaco, espacos} : EspacosFormProps) => {
             <EspacosListScreen
                 espacos={espacos}
                 visible={espacos.length > 0}
+                onAddComodo={onAddComodo}
             />
         </ImovelFormCard>
         
