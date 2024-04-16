@@ -4,14 +4,14 @@ import { EspacoFormButtons } from "../../EspacoFormButtons.tsx/EspacoFormButtons
 import { RegistroEspacoContainer, FormGridTile, TipoSelect, FormNumbersInput, InputLabel } from "../styles";
 import { Espaco } from "../../../../types/imovel";
 
-type RegistroEspacoScreen = {
+type RegistroEspacoScreenProps = {
     onFormChange : (event:any) => void,
     onSaveEspaco : (espaco: Espaco) => void,
     onCancel : () => void,
     visible ?: boolean
 }
 
-export const RegistroEspacoScreen = ({onFormChange, onSaveEspaco, onCancel, visible = true} : RegistroEspacoScreen) => {
+export const RegistroEspacoScreen = ({onFormChange, onSaveEspaco, onCancel, visible = true} : RegistroEspacoScreenProps) => {
     if(!visible) return null;
     return(
         <RegistroEspacoContainer  onChange={onFormChange}>
@@ -57,17 +57,6 @@ export const RegistroEspacoScreen = ({onFormChange, onSaveEspaco, onCancel, visi
                                 id="andar"
                                 name="andar"
                                 placeholder="Ex.: 2"
-                            />
-                        </FormGridTile>
-                    </Grid>
-                    <Grid item xs={6} sm={12} p="0 2vw">
-                        <FormGridTile>
-                            <InputLabel>Digite um nome para seu espaço</InputLabel>
-                            <input
-                                type="text"
-                                name="nome"
-                                id="nome"
-                                placeholder="Digite o nome do seu espaço"
                             />
                         </FormGridTile>
                     </Grid>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Comodo, Espaco } from "../../../../../types/imovel";
 import { Grid } from "@mui/material";
-import { EspacosListTable, EspacosListTableContainer, TableColumn, TableHeaderColumn, TableRow} from "./styles";
+import { AddEspacoButton, AddEspacoTile, EspacosListTable, EspacosListTableContainer, TableColumn, TableHeaderColumn, TableRow} from "./styles";
 import { AddComodoForm } from "../ComodoForm/AddComodoForm";
 import { EspacosTable } from "./EspacosTable";
 import { EspacoDetails } from "../ComodosList/EspacoDetails";
@@ -9,10 +9,11 @@ import { EspacoDetails } from "../ComodosList/EspacoDetails";
 type EspacosListProps = {
     espacos:Espaco[],
     visible?:boolean,
-    onAddComodo : (espaco: Espaco, comodo: Comodo) => void
+    onAddComodo : (espaco: Espaco, comodo: Comodo) => void,
+    onAddNewEspaco : () => void
 }
 
-export const EspacosListScreen = ({espacos, onAddComodo, visible=true} : EspacosListProps) => {
+export const EspacosListScreen = ({espacos, onAddComodo, onAddNewEspaco, visible=true} : EspacosListProps) => {
     const [showAddComodo, setShowAddComodo] = useState(false);
     const [comodos , setComodos] = useState<Comodo[]>([])
 
@@ -41,7 +42,13 @@ export const EspacosListScreen = ({espacos, onAddComodo, visible=true} : Espacos
 
     if(!visible) return null;
     return (<Grid container height={"100%"}>
-        <Grid item xs={selectedEspaco || showAddComodo ? 6: 12} p={"10px"}>
+        <Grid 
+            item 
+            xs={selectedEspaco || showAddComodo ? 4: 12}
+         >
+            <AddEspacoTile>
+                <AddEspacoButton onClick={onAddNewEspaco}>Adicione um novo espaço</AddEspacoButton>
+            </AddEspacoTile>
             <EspacosTable 
                 espacos={espacos}
                 onSelect={handleSelectEspaco}
@@ -50,7 +57,7 @@ export const EspacosListScreen = ({espacos, onAddComodo, visible=true} : Espacos
         </Grid>
         {
             selectedEspaco && !showAddComodo && (
-                <Grid item xs={6} p="15px">
+                <Grid item xs={8} p="15px">
                     <EspacoDetails
                         espaco={selectedEspaco}
                         onAddComodo={handleAddComodoButton}

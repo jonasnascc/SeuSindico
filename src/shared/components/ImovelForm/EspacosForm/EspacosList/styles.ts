@@ -44,3 +44,19 @@ export const TableColumn = styled.td<{$column : "tipo" | "numero"}>`
     font-weight: 400;
     text-align: center;
 `
+
+export const AddEspacoTile = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
+export const AddEspacoButton = styled.button`
+    background-color: #4B31A1;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    word-break: keep-all;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+`

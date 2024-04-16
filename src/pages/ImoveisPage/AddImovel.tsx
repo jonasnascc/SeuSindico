@@ -6,8 +6,13 @@ import { NameForm } from "../../shared/components/ImovelForm/NameForm";
 import { ImovelDataForm } from "../../shared/components/ImovelForm/ImovelDataForm";
 import { EnderecoForm } from "../../shared/components/ImovelForm/EnderecoForm";
 import { EspacosForm } from "../../shared/components/ImovelForm/EspacosForm/EspacosForm";
+import { SaveButton, SaveDiv } from "./styles";
+import { useQueryClient } from "react-query";
+import { postImovel } from "../../api/services/Imoveis";
 
 export const AddImovel = () => {
+    const queryClient = useQueryClient();
+
     const [imovel, setImovel] = useState<Imovel>({
         codigo: null,
         nome: "",
@@ -30,6 +35,10 @@ export const AddImovel = () => {
     useEffect(() => {
         console.log(imovel)
     } , [imovel])
+
+    const handleSaveImovel = () => {
+        queryClient.prefetchQuery(["imovel"], () => postImovel(imovel));
+    }
 
 
     const handleFormChange = (event: any, forProp ?: string) => {
@@ -83,6 +92,9 @@ export const AddImovel = () => {
                     espacos={imovel.espacos}
                     onAddComodo={handleAddComodo}
                 />
+                <SaveDiv>
+                    <SaveButton onClick={handleSaveImovel}>Salvar Imóvel</SaveButton>
+                </SaveDiv>
             </div>
         </Container>
     )

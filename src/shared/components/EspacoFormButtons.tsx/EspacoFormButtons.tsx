@@ -15,7 +15,7 @@ export const EspacoFormButtons = ({onSave, onCancel, visible = true} : EspacoFor
         <EspacoButtons>
             <Grid container spacing={"1vw"} justifyContent={"center"}>
                     <Grid item xs={12} sm={6} md={3}>
-                        <CancelButton onClick={onCancel}>Cancelar</CancelButton>
+                        <CancelButton onClick={onCancel}>Voltar</CancelButton>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                         <SaveButton onClick={onSave}>Adicionar</SaveButton>

@@ -15,7 +15,6 @@ type EspacosFormProps = {
 }
 
 const EspacoVazio : Espaco = {
-    nome: "",
     tipo: "CASA",
     espacoId: null,
     andar: null,
@@ -75,8 +74,9 @@ export const EspacosForm = ({onSaveEspaco, espacos, onAddComodo} : EspacosFormPr
 
             <EspacosListScreen
                 espacos={espacos}
-                visible={espacos.length > 0}
+                visible={espacos.length > 0 && !registrandoEspaco}
                 onAddComodo={onAddComodo}
+                onAddNewEspaco={handleAddButton}
             />
         </ImovelFormCard>
         

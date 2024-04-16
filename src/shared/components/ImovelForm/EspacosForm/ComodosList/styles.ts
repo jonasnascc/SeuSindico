@@ -11,6 +11,29 @@ export const SubHeader = styled.div`
     margin-bottom: 5px;
 `
 
+export const EspacoSubHeaderDiv = styled.div`
+    display: flex;
+    align-items: flex-end;
+
+    gap: 10px;
+    margin-bottom: 10px;
+`
+
+export const PropsTile = styled.div`
+    display:flex;
+    gap: 10px;
+    margin-bottom: 20px;
+`
+
+export const Prop = styled.p`
+    margin: 5px 0;
+    padding: 0;
+`
+
+export const PropName = styled.span`
+    font-weight: 600;
+`
+
 export const ComodosTags = styled.div`
     display: flex;
     gap: .5vw;
@@ -30,4 +53,8 @@ export const ComodoTag = styled.button`
 
 export const AddComodoTag = styled(ComodoTag)`
     background-color: #4B31A1;
+`
+
+export const EditarButton = styled(AddComodoTag)`
+
 `

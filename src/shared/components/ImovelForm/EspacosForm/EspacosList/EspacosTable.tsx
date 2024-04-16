@@ -12,7 +12,7 @@ export const EspacosTable = ({espacos, selected, onSelect}:EspacosTableProps) =>
     return (
         <EspacosListTableContainer>
             <EspacosListTable>
-                <caption>Selecione um espaço abaixo:</caption>
+                <caption>Ou selecione um espaço abaixo:</caption>
                 <TableRow $header>
                     <TableHeaderColumn $column="numero">
                         Número
