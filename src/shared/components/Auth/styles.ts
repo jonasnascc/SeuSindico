@@ -5,7 +5,6 @@ export const InputText = styled.p`
 `
 
 export const AuthBody = styled.div`
-    background-color: #10CCAD;
     width: 100%;
     height: 100%;
     display: flex;
@@ -29,7 +28,7 @@ export const AuthCard = styled.div`
 export const AuthButton = styled.button<{$color : "primary" | "secondary"}>`
     border: none;
     border-radius: 5px;
-    height: 30px;
+    height: 40px;
     width: 100%;
     background-color: ${
         props => props.$color==="primary" ? "#10CCAD" : "#4B31A1"
@@ -59,11 +58,11 @@ export const Form = styled.form`
 `
 
 export const AuthFormInput = styled.input`
-    height: 30px;
+    height: 40px;
 `
 
 export const AuthFormSelect = styled.select`
-    height: 30px;
+    height: 40px;
 `
 
 export const Logo = styled.img`

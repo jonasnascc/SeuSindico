@@ -5,22 +5,31 @@ import { Sidebar } from "./Sidebar/Sidebar";
 import styled from "styled-components";
 import { NavigationBar } from "./NavigationBar/NavigationBar";
 
+export const hideNavBarPathList = [
+    "/login",
+    "/signup"
+]
+
 export const Layout = () => {
+    const location = useLocation();
+    const hideNavBar = hideNavBarPathList.includes(location.pathname);
+    console.log(location.pathname)
+
     return (            
         <>
-        <NavigationBar/>
-        <LayoutContainer>
+        <NavigationBar hide={hideNavBar}/>
+        <LayoutContainer $noNavBar={hideNavBar}>
             <Outlet/>
         </LayoutContainer>
         </>
     )
 }
 
-const LayoutContainer = styled.div`
+const LayoutContainer = styled.div<{$noNavBar?:boolean}>`
     position: absolute;
-    margin-top: 80px;
     display: flex;
     height: 100%;
     width: 100%;
+    ${props => !props.$noNavBar && "margin-top: 80px;"}
 `
 

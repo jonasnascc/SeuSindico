@@ -5,7 +5,12 @@ import { Grid } from "@mui/material";
 import { NavigationMenu } from "../NavigationMenu/NavigationMenu";
 import { UserCollapsableButton } from "../UserCollapsableButton/UserCollapsableButton";
 
-export const NavigationBar = () => {
+type NavigationBarProps = {
+    hide ?: boolean
+}
+
+export const NavigationBar = ({hide=false} : NavigationBarProps) => {
+    if(hide) return null;
     return(
         <Bar>
             <Grid container height={"100%"}>
