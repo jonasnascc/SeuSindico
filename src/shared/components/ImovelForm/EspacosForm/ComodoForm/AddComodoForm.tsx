@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Comodo } from "../../../../types/imovel";
-import { ComodoFormContainer, FormNumbersInput, InputLabel } from "../styles";
+import { Comodo } from "../../../../../types/imovel";
+import { FormNumbersInput, InputLabel } from "../../styles";
+import { ComodoFormContainer } from "./styles";
 
 const comodoVazio : Comodo = {
     nome: "",

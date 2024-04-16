@@ -4,7 +4,7 @@ import { Fade, Grid } from "@mui/material";
 import { Espaco } from "../../../../types/imovel";
 import { ImovelFormCard } from "../../ImovelFormCard/ImovelFormCard";
 import { EspacoFormButtons } from "../../EspacoFormButtons.tsx/EspacoFormButtons";
-import { EspacosList } from "../../EspacosList/EspacosList";
+import { EspacosListScreen } from "./EspacosList/EspacosListScreen";
 import { AddButtonScreen } from "./AddButtonScreen";
 import { RegistroEspacoScreen } from "./RegistroEspacoScreen";
 
@@ -72,7 +72,7 @@ export const EspacosForm = ({onSaveEspaco, espacos} : EspacosFormProps) => {
                 visible={registrandoEspaco}
             />
 
-            <EspacosList
+            <EspacosListScreen
                 espacos={espacos}
                 visible={espacos.length > 0}
             />
