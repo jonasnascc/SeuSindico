@@ -1,9 +1,10 @@
 import { Container, Grid } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Sidebar } from "./Sidebar/Sidebar";
 import styled from "styled-components";
 import { NavigationBar } from "./NavigationBar/NavigationBar";
+import { AuthContext } from "../../context/auth/AuthContext";
 
 export const hideNavBarPathList = [
     "/login",
@@ -11,13 +12,14 @@ export const hideNavBarPathList = [
 ]
 
 export const Layout = () => {
+    const {authenticated} = useContext(AuthContext);
     const location = useLocation();
     const hideNavBar = hideNavBarPathList.includes(location.pathname);
     console.log(location.pathname)
 
     return (            
         <>
-        <NavigationBar hide={hideNavBar}/>
+        <NavigationBar hide={hideNavBar || !authenticated}/>
         <LayoutContainer $noNavBar={hideNavBar}>
             <Outlet/>
         </LayoutContainer>

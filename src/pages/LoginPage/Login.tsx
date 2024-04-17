@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import logo from "../../logo.svg"
 import { AuthContext } from "../../context/auth/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { AuthBody, AuthButton, AuthCard, AuthFormInput, ErrorMessage, Form, FormContainer, InputText, LoginText, Logo } from "../../shared/components/Auth/styles";
 
 export const LoginPage = () => {
@@ -12,16 +12,12 @@ export const LoginPage = () => {
     const [password, setPassword] = useState("");
     const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-    useEffect(() => {
-        if(auth.authenticated) navigate("/");
-    },[auth.authenticated])
-
     const handleLoginButton = async (event : any) => {
         event.preventDefault();
         if(login==="" || password === "" || !auth.signin(login, password)){
             handleError();
         } else if(await auth.signin(login, password)){
-            navigate("/");
+            navigate("/imoveis");
         } else handleError();
     }
 
@@ -42,7 +38,8 @@ export const LoginPage = () => {
         setShowErrorMessage(true);
     }
  
-    return ( 
+    if(auth.authenticated) return <Navigate to="/imoveis"/>
+    else return ( 
         <Form method="POST" action="/api/auth/login" name="user">
             <Logo src={logo} alt="logo"/>
             <LoginText>Bem vindo ao SeuSindico. Entre ou cadastre-se.</LoginText>

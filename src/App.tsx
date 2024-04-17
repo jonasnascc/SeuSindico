@@ -7,6 +7,7 @@ import { HomePage } from './pages/HomePage/Home';
 import { ImoveisPage } from './pages/ImoveisPage/Imoveis';
 import { AddImovel } from './pages/ImoveisPage/AddImovel';
 import { AuthPage } from './shared/components/Auth/AuthPage';
+import { RequireAuth } from './context/auth/RequireAuth';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path='/signup' element={<AuthPage/>}>
             <Route index element={<SignupPage/>}/>
           </Route>
-          <Route path='/imoveis'>
+          <Route path='/imoveis' element={<RequireAuth/>}>
             <Route index element={<ImoveisPage/>} />
             <Route path='adicionar' element={<AddImovel/>}/>
           </Route>

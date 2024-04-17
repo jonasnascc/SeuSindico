@@ -15,6 +15,11 @@ export const AuthProvider = ({children} : {children:JSX.Element}) => {
                 if(await validateToken(token)) {
                     setAuthenticated(true);
                 }
+                else {
+                    setUser(null);
+                    setAuthenticated(false)
+                    return false;
+                }
             }
         }
         validate();
@@ -30,9 +35,14 @@ export const AuthProvider = ({children} : {children:JSX.Element}) => {
                 setAuthenticated(true);
                 return true;
             }
-            return false;
+            else {
+                setUser(null);
+                setAuthenticated(false)
+                return false;
+            }
         }
         setAuthenticated(false);
+        setUser(null);
         return false;
     }
     const logout = async () => {

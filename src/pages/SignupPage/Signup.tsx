@@ -3,7 +3,7 @@ import styled from "styled-components";
 import logo from "../../logo.svg"
 import { AuthButton, AuthFormInput, AuthFormSelect, Form, FormContainer, InputText, LoginText, Logo } from "../../shared/components/Auth/styles";
 import { AuthContext } from "../../context/auth/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const SignupPage = () => {
     const {signup, authenticated} = useContext(AuthContext);
@@ -47,7 +47,8 @@ export const SignupPage = () => {
     }
  
 
-    return (
+    if(authenticated) return <Navigate to="/imoveis"/>
+    else return (
         <Form method="POST" action="/auth/signup" onChange={handleChange}>
             <Logo src={logo} alt="logo"/>
             <LoginText>Cadastre-se</LoginText>
