@@ -19,7 +19,6 @@ const EspacoVazio : Espaco = {
     espacoId: null,
     andar: null,
     numero: "",
-    quantidadeComodos: null,
     metrosQuadrados: null,
     comodos: []
 }

@@ -51,8 +51,7 @@ export const ImoveisTable = ({imoveis, searchValue}:{imoveis : Imovel[], searchV
             const search = formatSearchvalue(searchValue);
 
             return  formatSearchvalue(imovel.nome).includes(search) ||
-                    formatSearchvalue(imovel.descricao).includes(search) ||
-                    formatSearchvalue(imovel.tipo).includes(search) 
+                    formatSearchvalue(imovel.descricao).includes(search)
         }
         else return true;
     }

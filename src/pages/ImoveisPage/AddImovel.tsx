@@ -28,8 +28,7 @@ export const AddImovel = () => {
             cep: "",
             complemento: ""
         },
-        espacos: [],
-        tipo: ""
+        espacos: []
     });
 
     useEffect(() => {
