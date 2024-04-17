@@ -1,5 +1,5 @@
 import React from "react";
-import { Imovel } from "../../../types/imovel";
+import { Endereco, Imovel } from "../../../types/imovel";
 import { TableItem } from "./TableItem";
 import styled from "styled-components";
 import { TableHeader } from "./TableHeader";
@@ -50,8 +50,20 @@ export const ImoveisTable = ({imoveis, searchValue}:{imoveis : Imovel[], searchV
         if(searchValue!==null) {
             const search = formatSearchvalue(searchValue);
 
+            let enderecoMatch = false;
+
+            if(imovel.endereco!==null){
+                const endereco : Endereco = imovel.endereco;
+                Object.keys(imovel.endereco).forEach(key => {
+                    if(!enderecoMatch) {
+                        enderecoMatch = formatSearchvalue(endereco[key as keyof typeof endereco] as unknown as string??"").includes(search)
+                    }
+                })
+            }
+
             return  formatSearchvalue(imovel.nome).includes(search) ||
-                    formatSearchvalue(imovel.descricao).includes(search)
+                    formatSearchvalue(imovel.descricao).includes(search) ||
+                    enderecoMatch
         }
         else return true;
     }

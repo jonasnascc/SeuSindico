@@ -6,6 +6,7 @@ export const AddImovelBody = styled.div`
 `
 
 export const AddImovelButton = styled.button`
+    border: none;
     padding: 5px 10px;
     border-radius: 15px;
     background-color: #4B31A1;
@@ -37,7 +38,8 @@ export const SearchInput = styled.input`
     border: none;
     border-radius: 8px;
     padding: 10px;
-    height: 30px;
+    height: 40px;
+    border: solid 1px rgba(0,0,0,.3);
 `
 
 export const SearchButton = styled.button`
