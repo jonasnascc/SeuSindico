@@ -7,12 +7,13 @@ import { ImovelDataForm } from "../../shared/components/ImovelForm/ImovelDataFor
 import { EnderecoForm } from "../../shared/components/ImovelForm/EnderecoForm";
 import { EspacosForm } from "../../shared/components/ImovelForm/EspacosForm/EspacosForm";
 import { SaveButton, SaveDiv } from "./styles";
-import { useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import { postImovel } from "../../api/services/Imoveis";
+import { useNavigate } from "react-router-dom";
 
 export const AddImovel = () => {
-    const queryClient = useQueryClient();
-
+    const navigate = useNavigate();
+    
     const [imovel, setImovel] = useState<Imovel>({
         codigo: null,
         nome: "",
@@ -31,12 +32,18 @@ export const AddImovel = () => {
         espacos: []
     });
 
+    const mutation = useMutation(["imovel"], () => postImovel(imovel), {
+        onSuccess: () => {
+            navigate("/imoveis");
+        }
+    })
+
     useEffect(() => {
         console.log(imovel)
     } , [imovel])
 
     const handleSaveImovel = () => {
-        queryClient.prefetchQuery(["imovel"], () => postImovel(imovel));
+        mutation.mutate();
     }
 
 
