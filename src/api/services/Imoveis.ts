@@ -16,3 +16,11 @@ export const postImovel = async (imovel:Imovel) => {
         .then((resp) => resp.data)
         .catch((error) => console.log(error));
 }
+
+export const deleteImovel = async (id : number) => {
+    await axios.delete(`/proprietario/imoveis/${id}`, {
+        sendToken: true
+    })
+        .then((resp) => resp.data)
+        .catch((error) => console.log(error));
+}

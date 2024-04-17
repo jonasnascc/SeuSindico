@@ -11,6 +11,12 @@ export const IconTile = styled.div`
     color: #4B31A1;
 `
 
+export const DeleteIconTile = styled(IconTile)`
+    &:hover {
+        color: #FF3D00;
+    }
+`
+
 export const ExpandButton = styled.div`
     display: flex;
     height: 100%;

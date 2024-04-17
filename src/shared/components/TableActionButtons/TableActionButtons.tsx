@@ -1,7 +1,7 @@
 import React from "react";
 import { Imovel } from "../../../types/imovel";
 import { Grid } from "@mui/material";
-import { ActionIconsContainer, ExpandButton, IconTile } from "./styles";
+import { ActionIconsContainer, DeleteIconTile, ExpandButton, IconTile } from "./styles";
 
 import EditIcon from '@mui/icons-material/Edit';
 import HouseIcon from '@mui/icons-material/House';
@@ -10,6 +10,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useNavigate } from "react-router-dom";
+import { useMutation, useQueryClient } from "react-query";
+import { deleteImovel } from "../../../api/services/Imoveis";
 
 type TableActionButtonsProps = {
     imovel : Imovel,
@@ -18,6 +20,13 @@ type TableActionButtonsProps = {
 }
 
 export const TableActionButtons = ({onExpand, expanded=false, imovel} : TableActionButtonsProps) => {
+    const queryClient = useQueryClient();
+    const deleteMutation = useMutation(["imovel-delete"], (imovelId : number) => deleteImovel(imovelId), {
+        onSuccess: () => {
+            queryClient.invalidateQueries(["imoveis"])
+        }
+    });
+    
     const handleEdit = () => {
         
     }
@@ -27,7 +36,7 @@ export const TableActionButtons = ({onExpand, expanded=false, imovel} : TableAct
     }
 
     const handleDelete = () => {
-
+        deleteMutation.mutate(imovel?.codigo??-1);
     }
 
     return (
@@ -36,7 +45,7 @@ export const TableActionButtons = ({onExpand, expanded=false, imovel} : TableAct
                 <ActionIconsContainer>
                     <IconTile onClick={handleEdit}><EditIcon/></IconTile>
                     <IconTile onClick={handleManageResidencias}><HouseIcon/></IconTile>
-                    <IconTile onClick={handleDelete}><DeleteIcon/></IconTile>
+                    <DeleteIconTile onClick={handleDelete}><DeleteIcon/></DeleteIconTile>
                 </ActionIconsContainer>
             </Grid>
             <Grid item xs={6}>
