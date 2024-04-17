@@ -20,8 +20,8 @@ export const useAuth = () => {
         logout : async () => {
             return authRequest("auth/logout");
         },
-        signup : async (name: string, cpf: string, email:string, senha:string, role:string) => {
-            return authRequest("auth/signup", {name, cpf, email, senha, role});
+        signup : async (nome: string, cpf: string, email:string, senha:string, role:string) => {
+            return authRequest("auth/signup", {nome, cpf, email, senha, role});
         },
         validateToken : async (token: string) => {
             let response : any = null;
