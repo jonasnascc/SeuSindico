@@ -55,7 +55,8 @@ export const SignupPage = () => {
             <InputText>Nome</InputText>     
             <AuthFormInput 
                 className="center-text" 
-                type="text" id="nome" 
+                type="text" 
+                id="nome" 
                 name="nome" 
                 onChange={() => null}
                 placeholder="Digite seu nome completo"

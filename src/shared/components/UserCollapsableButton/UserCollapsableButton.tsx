@@ -22,7 +22,7 @@ export const UserCollapsableButton = () => {
             user ? (
                 <ButtonDiv>
                     <CollapsableDiv onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                        <Username>{user.nome + " Nascimento"}</Username>
+                        <Username>{user.nome}</Username>
                         <UserAvatar $size="40px"/>
                         <ExpandMoreTile>
                             <ExpandMoreIcon/>
