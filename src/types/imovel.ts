@@ -16,6 +16,7 @@ export type SimpleImovel = {
 }
 
 export type Endereco = {
+    enderecoId : number | null,
     rua: string,
     numero: number | null,
     bairro: string,
@@ -35,6 +36,7 @@ export type Espaco = {
 }
 
 export type Comodo = {
+    comodoId : number | null, 
     nome: string,
     metrosQuadrados: number | null,
     detalhes: string

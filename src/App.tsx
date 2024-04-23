@@ -24,6 +24,7 @@ function App() {
           <Route path='/imoveis' element={<RequireAuth/>}>
             <Route index element={<ImoveisPage/>} />
             <Route path='adicionar' element={<AddImovel/>}/>
+            <Route path='editar' element={<AddImovel/>}/>
           </Route>
         </Route>
       </Routes>

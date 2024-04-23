@@ -2,12 +2,15 @@ import React from "react";
 import { CenteredAlignedFormDescription, FormDescription, FormGridTile, FormGridTileVerticalDirection, InputLabel } from "./styles";
 import { Grid } from "@mui/material";
 import { ImovelFormCard } from "../ImovelFormCard/ImovelFormCard";
+import { Imovel } from "../../../types/imovel";
 
 type EnderecoFormProps = {
+    imovel: Imovel,
     onChange: (event:any) => void
 }
 
-export const EnderecoForm = ({onChange} : EnderecoFormProps) => {
+export const EnderecoForm = ({onChange, imovel} : EnderecoFormProps) => {
+    const {endereco} = imovel;
     return (
         <ImovelFormCard
             label = "Qual o endereço do seu imóvel?"
@@ -24,6 +27,7 @@ export const EnderecoForm = ({onChange} : EnderecoFormProps) => {
                                 name="rua"
                                 type="text"
                                 placeholder="Digite a rua"
+                                value={endereco?.rua??""}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>
@@ -36,6 +40,7 @@ export const EnderecoForm = ({onChange} : EnderecoFormProps) => {
                                 name="bairro"
                                 type="text"
                                 placeholder="Digite o bairro"
+                                value={endereco?.bairro??""}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>
@@ -48,6 +53,7 @@ export const EnderecoForm = ({onChange} : EnderecoFormProps) => {
                                 name="numero"
                                 type="text"
                                 placeholder="ex.: 121 B"
+                                value={endereco?.numero??""}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>
@@ -60,6 +66,7 @@ export const EnderecoForm = ({onChange} : EnderecoFormProps) => {
                                 name="cidade"
                                 type="text"
                                 placeholder="Digite a cidade"
+                                value={endereco?.cidade??""}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>
@@ -72,6 +79,7 @@ export const EnderecoForm = ({onChange} : EnderecoFormProps) => {
                                 name="estado"
                                 type="text"
                                 placeholder="Digite o estado"
+                                value={endereco?.estado??""}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>
@@ -84,6 +92,7 @@ export const EnderecoForm = ({onChange} : EnderecoFormProps) => {
                                 name="cep"
                                 type="text"
                                 placeholder="Digite o CEP"
+                                value={endereco?.cep??""}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>
@@ -95,6 +104,7 @@ export const EnderecoForm = ({onChange} : EnderecoFormProps) => {
                                 name="complemento"
                                 type="text"
                                 placeholder="Digite o complemento"
+                                value={endereco?.complemento??""}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>

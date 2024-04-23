@@ -61,7 +61,7 @@ export const EspacosForm = ({onSaveEspaco, espacos, onAddComodo} : EspacosFormPr
         >
             <AddButtonScreen 
                 onButtonClick={handleAddButton}
-                visible={displayPlusPage}
+                visible={espacos.length === 0 && displayPlusPage}
             />
 
             <RegistroEspacoScreen

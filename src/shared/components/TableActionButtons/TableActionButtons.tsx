@@ -21,15 +21,19 @@ type TableActionButtonsProps = {
 
 export const TableActionButtons = ({onExpand, expanded=false, imovel} : TableActionButtonsProps) => {
     const queryClient = useQueryClient();
+    const navigate = useNavigate();
+    
     const deleteMutation = useMutation(["imovel-delete"], (imovelId : number) => deleteImovel(imovelId), {
         onSuccess: () => {
             queryClient.invalidateQueries(["imoveis"])
         }
     });
     
-    const handleEdit = () => {
         
-    }
+    const handleEditImovel = () => {
+        navigate("editar", {state:{imovelData: imovel}})
+    }   
+
 
     const handleManageResidencias = () => {
 
@@ -43,7 +47,7 @@ export const TableActionButtons = ({onExpand, expanded=false, imovel} : TableAct
         <Grid container>
             <Grid item xs={6}>
                 <ActionIconsContainer>
-                    <IconTile onClick={handleEdit}><EditIcon/></IconTile>
+                    <IconTile onClick={handleEditImovel}><EditIcon/></IconTile>
                     <IconTile onClick={handleManageResidencias}><HouseIcon/></IconTile>
                     <DeleteIconTile onClick={handleDelete}><DeleteIcon/></DeleteIconTile>
                 </ActionIconsContainer>

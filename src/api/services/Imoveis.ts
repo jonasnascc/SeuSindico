@@ -17,6 +17,14 @@ export const postImovel = async (imovel:Imovel) => {
         .catch((error) => console.log(error));
 }
 
+export const updateImovel = async (imovel:Imovel) => {
+    await axios.put("/proprietario/imoveis", imovel, {
+        sendToken: true,
+    })
+        .then((resp) => resp.data)
+        .catch((error) => console.log(error));
+}
+
 export const deleteImovel = async (id : number) => {
     await axios.delete(`/proprietario/imoveis/${id}`, {
         sendToken: true

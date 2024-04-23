@@ -4,6 +4,7 @@ import { FormNumbersInput, InputLabel } from "../../styles";
 import { ComodoFormContainer } from "./styles";
 
 const comodoVazio : Comodo = {
+    comodoId: null, 
     nome: "",
     metrosQuadrados: null,
     detalhes: ""

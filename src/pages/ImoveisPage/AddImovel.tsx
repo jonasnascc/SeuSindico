@@ -8,12 +8,13 @@ import { EnderecoForm } from "../../shared/components/ImovelForm/EnderecoForm";
 import { EspacosForm } from "../../shared/components/ImovelForm/EspacosForm/EspacosForm";
 import { SaveButton, SaveDiv } from "./styles";
 import { useMutation } from "react-query";
-import { postImovel } from "../../api/services/Imoveis";
-import { useNavigate } from "react-router-dom";
+import { postImovel, updateImovel } from "../../api/services/Imoveis";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const AddImovel = () => {
     const navigate = useNavigate();
-    
+    const location = useLocation();
+    const [editMode, setEditMode] = useState(false);
     const [imovel, setImovel] = useState<Imovel>({
         codigo: null,
         nome: "",
@@ -21,6 +22,7 @@ export const AddImovel = () => {
         quantidadeAndares: null,
         espacosPorAndar: null,
         endereco: {
+            enderecoId: null,
             rua: "",
             numero: null,
             bairro: "",
@@ -32,7 +34,21 @@ export const AddImovel = () => {
         espacos: []
     });
 
-    const mutation = useMutation(["imovel"], () => postImovel(imovel), {
+    useEffect(() => {
+        if(location?.state?.imovelData??false) {
+            setEditMode(true);
+            setImovel(location.state.imovelData);
+        }
+    }, [])
+    
+
+    const saveMutation = useMutation(["save-imovel"], () => postImovel(imovel), {
+        onSuccess: () => {
+            navigate("/imoveis");
+        }
+    })
+
+    const updateMutation = useMutation(["update-imovel"], () => updateImovel(imovel), {
         onSuccess: () => {
             navigate("/imoveis");
         }
@@ -43,7 +59,9 @@ export const AddImovel = () => {
     } , [imovel])
 
     const handleSaveImovel = () => {
-        mutation.mutate();
+        if(editMode) {
+            updateMutation.mutate();
+        }else saveMutation.mutate();
     }
 
 
@@ -90,9 +108,18 @@ export const AddImovel = () => {
         <Container>
             <div style={{paddingBottom: "45px"}}>
                 <SectionHeader label="Adicionar Imóvel"/>
-                <ImovelDataForm onChange={handleFormChange}/>
-                <NameForm onChange={handleFormChange}/>
-                <EnderecoForm onChange={(event:any) => handleFormChange(event, "endereco")}/>
+                <ImovelDataForm 
+                    imovel={imovel}
+                    onChange={handleFormChange}
+                />
+                <NameForm 
+                    imovel={imovel}
+                    onChange={handleFormChange}
+                />
+                <EnderecoForm 
+                    imovel={imovel}
+                    onChange={(event:any) => handleFormChange(event, "endereco")}
+                />
                 <EspacosForm 
                     onSaveEspaco={handleSaveEspaco} 
                     espacos={imovel.espacos}
