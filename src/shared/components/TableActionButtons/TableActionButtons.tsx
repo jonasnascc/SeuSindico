@@ -35,8 +35,8 @@ export const TableActionButtons = ({onExpand, expanded=false, imovel} : TableAct
     }   
 
 
-    const handleManageResidencias = () => {
-
+    const handleListEspacos = () => {
+        navigate("espacos", {state:{imovelData: imovel}})
     }
 
     const handleDelete = () => {
@@ -48,7 +48,7 @@ export const TableActionButtons = ({onExpand, expanded=false, imovel} : TableAct
             <Grid item xs={6}>
                 <ActionIconsContainer>
                     <IconTile onClick={handleEditImovel}><EditIcon/></IconTile>
-                    <IconTile onClick={handleManageResidencias}><HouseIcon/></IconTile>
+                    <IconTile onClick={handleListEspacos}><HouseIcon/></IconTile>
                     <DeleteIconTile onClick={handleDelete}><DeleteIcon/></DeleteIconTile>
                 </ActionIconsContainer>
             </Grid>

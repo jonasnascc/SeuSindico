@@ -4,7 +4,7 @@ import { Fade, Grid } from "@mui/material";
 import { Comodo, Espaco } from "../../../../types/imovel";
 import { ImovelFormCard } from "../../ImovelFormCard/ImovelFormCard";
 import { EspacoFormButtons } from "../../EspacoFormButtons.tsx/EspacoFormButtons";
-import { EspacosListScreen } from "./EspacosList/EspacosListScreen";
+import { EspacosListScreen } from "../../EspacosList/EspacosListScreen";
 import { AddButtonScreen } from "./AddButtonScreen";
 import { RegistroEspacoScreen } from "./RegistroEspacoScreen";
 
@@ -15,12 +15,14 @@ type EspacosFormProps = {
 }
 
 const EspacoVazio : Espaco = {
+    id: null,
     tipo: "CASA",
     espacoId: null,
     andar: null,
     numero: "",
     metrosQuadrados: null,
-    comodos: []
+    comodos: [],
+    contrato : null
 }
 
 export const EspacosForm = ({onSaveEspaco, espacos, onAddComodo} : EspacosFormProps) => {

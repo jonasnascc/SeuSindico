@@ -1,6 +1,6 @@
 import React from "react";
 import { EspacosListTableContainer, EspacosListTable, TableHeaderColumn, TableColumn , TableRow} from "./styles";
-import { Espaco } from "../../../../../types/imovel";
+import { Espaco } from "../../../types/imovel";
 
 type EspacosTableProps = {
     espacos : Espaco[],
@@ -25,8 +25,7 @@ export const EspacosTable = ({espacos, selected, onSelect}:EspacosTableProps) =>
                     espacos.map((espaco, index) => (
                         <TableRow 
                             key={index} 
-                            onClick={() => onSelect(espaco)} 
-                            $selected={selected}
+                            onClick={() => onSelect(espaco)}
                         >
                             <TableColumn $column="numero">{espaco.numero}</TableColumn>
                             <TableColumn $column="tipo">{espaco.tipo}</TableColumn>

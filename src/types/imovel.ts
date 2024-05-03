@@ -27,12 +27,17 @@ export type Endereco = {
 }
 
 export type Espaco = {
+    id:number|null
     tipo: "CASA" | "APARTAMENTO" | "ESCRITORIO" | "PONTO_COMERCIAL"
     espacoId: number | null,
     andar: number | null,
     numero: string,
     metrosQuadrados: number | null,
-    comodos: Comodo[]
+    comodos: Comodo[],
+    contrato : {
+        contratoId : number | null,
+        statusContrato : "PENDENTE" | "ASSINADO"
+    } | null
 }
 
 export type Comodo = {

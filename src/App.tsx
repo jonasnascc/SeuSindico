@@ -8,6 +8,8 @@ import { ImoveisPage } from './pages/ImoveisPage/Imoveis';
 import { AddImovel } from './pages/ImoveisPage/AddImovel';
 import { AuthPage } from './shared/components/Auth/AuthPage';
 import { RequireAuth } from './context/auth/RequireAuth';
+import { Espacos } from './pages/EspacosPage/Espacos';
+import { AluguelPage } from './pages/AluguelPage/AluguelPage';
 
 function App() {
   return (
@@ -21,10 +23,12 @@ function App() {
           <Route path='/signup' element={<AuthPage/>}>
             <Route index element={<SignupPage/>}/>
           </Route>
-          <Route path='/imoveis' element={<RequireAuth/>}>
+          <Route path='/imoveis'>
             <Route index element={<ImoveisPage/>} />
             <Route path='adicionar' element={<AddImovel/>}/>
             <Route path='editar' element={<AddImovel/>}/>
+            <Route path='espacos' element={<Espacos/>}/>
+            <Route path='espacos/alugar' element={<AluguelPage/>}/>
           </Route>
         </Route>
       </Routes>

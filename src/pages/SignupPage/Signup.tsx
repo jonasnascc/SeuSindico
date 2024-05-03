@@ -18,7 +18,7 @@ export const SignupPage = () => {
         email : "",
         cpf : "",
         senha: "",
-        role : ""
+        role : "OCUPANTE"
     });
 
     const handleChange = (event : any) => {

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Comodo, Espaco } from "../../../../../types/imovel";
+import { Comodo, Espaco } from "../../../types/imovel";
 import { Grid } from "@mui/material";
 import { AddEspacoButton, AddEspacoTile, EspacosListTable, EspacosListTableContainer, TableColumn, TableHeaderColumn, TableRow} from "./styles";
-import { AddComodoForm } from "../ComodoForm/AddComodoForm";
+import { AddComodoForm } from "../ImovelForm/EspacosForm/ComodoForm/AddComodoForm";
 import { EspacosTable } from "./EspacosTable";
-import { EspacoDetails } from "../ComodosList/EspacoDetails";
+import { EspacoDetails } from "../ImovelForm/EspacosForm/ComodosList/EspacoDetails";
 
 type EspacosListProps = {
     espacos:Espaco[],

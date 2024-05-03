@@ -17,6 +17,7 @@ export const Layout = () => {
     const hideNavBar = hideNavBarPathList.includes(location.pathname);
     console.log(location.pathname)
 
+
     return (            
         <>
         <NavigationBar hide={hideNavBar || !authenticated}/>

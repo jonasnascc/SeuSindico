@@ -7,8 +7,14 @@ export const ActionIconsContainer = styled.div`
 `
 
 export const IconTile = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor:pointer;
     color: #4B31A1;
+    &:hover {
+        color: #02947C;
+    }
 `
 
 export const DeleteIconTile = styled(IconTile)`

@@ -12,10 +12,6 @@ export const NavigationMenuItemsData : {label:string, path:string}[]= [
         path:"/imoveis"
     },
     {
-        label:"Residências",
-        path:"/residencias"
-    },
-    {
         label:"Contratos",
         path:"/contratos"
     },
