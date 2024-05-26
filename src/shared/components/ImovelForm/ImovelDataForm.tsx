@@ -1,5 +1,5 @@
 import React from "react";
-import { FormDescription, FormGridTile, FormNumbersInput, InputLabel } from "./styles";
+import { FormGridTile, FormNumbersInput, InputLabel } from "./styles";
 import { Grid } from "@mui/material";
 import { ImovelFormCard } from "../ImovelFormCard/ImovelFormCard";
 import { Imovel } from "../../../types/imovel";
@@ -11,6 +11,7 @@ type ImovelDataFormProps = {
 
 export const ImovelDataForm = ({onChange, imovel} : ImovelDataFormProps) => {
     const {quantidadeAndares, espacosPorAndar} = imovel;
+
     return(
         <ImovelFormCard
             label = "Vamos começar pelo básico"
@@ -20,7 +21,7 @@ export const ImovelDataForm = ({onChange, imovel} : ImovelDataFormProps) => {
         
         <Grid container  height={"100%"}>
             <Grid item xs={6} height={"100%"}>
-                <FormGridTile onChange={onChange}>
+                <FormGridTile>
                     <InputLabel>Quantos andares o seu imóvel possui?</InputLabel>
                     <FormNumbersInput
                         id="quantidadeAndares"
@@ -28,6 +29,7 @@ export const ImovelDataForm = ({onChange, imovel} : ImovelDataFormProps) => {
                         placeholder="Digite a quantidade de andares"
                         type="number"
                         value={quantidadeAndares??""}
+                        onChange={onChange}
                     />
                     <InputLabel>Quantos espaços por andar?</InputLabel>
                     <FormNumbersInput
@@ -36,6 +38,7 @@ export const ImovelDataForm = ({onChange, imovel} : ImovelDataFormProps) => {
                         placeholder="Digite a quantidade de espaços"
                         type="number"
                         defaultValue={espacosPorAndar??""}
+                        onChange={onChange}
                     />
                 </FormGridTile>
             </Grid>

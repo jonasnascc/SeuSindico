@@ -17,7 +17,7 @@ export const EnderecoForm = ({onChange, imovel} : EnderecoFormProps) => {
             headerGridScreens={{xs:12}}
             bodyGridScreens={{xs:12}}
         >
-            <form onChange={onChange}>
+            <form>
                 <Grid container>
                     <Grid item xs={12} sm={12} md={6}>
                         <FormGridTileVerticalDirection>
@@ -28,6 +28,7 @@ export const EnderecoForm = ({onChange, imovel} : EnderecoFormProps) => {
                                 type="text"
                                 placeholder="Digite a rua"
                                 value={endereco?.rua??""}
+                                onChange={onChange}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>
@@ -41,6 +42,7 @@ export const EnderecoForm = ({onChange, imovel} : EnderecoFormProps) => {
                                 type="text"
                                 placeholder="Digite o bairro"
                                 value={endereco?.bairro??""}
+                                onChange={onChange}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>
@@ -54,6 +56,7 @@ export const EnderecoForm = ({onChange, imovel} : EnderecoFormProps) => {
                                 type="text"
                                 placeholder="ex.: 121 B"
                                 value={endereco?.numero??""}
+                                onChange={onChange}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>
@@ -67,6 +70,7 @@ export const EnderecoForm = ({onChange, imovel} : EnderecoFormProps) => {
                                 type="text"
                                 placeholder="Digite a cidade"
                                 value={endereco?.cidade??""}
+                                onChange={onChange}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>
@@ -80,6 +84,7 @@ export const EnderecoForm = ({onChange, imovel} : EnderecoFormProps) => {
                                 type="text"
                                 placeholder="Digite o estado"
                                 value={endereco?.estado??""}
+                                onChange={onChange}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>
@@ -93,6 +98,7 @@ export const EnderecoForm = ({onChange, imovel} : EnderecoFormProps) => {
                                 type="text"
                                 placeholder="Digite o CEP"
                                 value={endereco?.cep??""}
+                                onChange={onChange}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>
@@ -105,6 +111,7 @@ export const EnderecoForm = ({onChange, imovel} : EnderecoFormProps) => {
                                 type="text"
                                 placeholder="Digite o complemento"
                                 value={endereco?.complemento??""}
+                                onChange={onChange}
                             />
                         </FormGridTileVerticalDirection>
                     </Grid>

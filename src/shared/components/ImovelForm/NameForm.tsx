@@ -19,7 +19,7 @@ export const NameForm = ({onChange, imovel} : NameFormProps) => {
         >
             <Grid container spacing={".3vw"} height={"100%"}>
                 <Grid item xs={12} sm={12} md={6}>
-                    <FormGridTile onChange={onChange}>
+                    <FormGridTile>
                         <InputLabel>Nome</InputLabel>
                         <NameInput
                             id="nome"
@@ -27,6 +27,7 @@ export const NameForm = ({onChange, imovel} : NameFormProps) => {
                             type="text"
                             placeholder="Digite um nome único"
                             value={nome}
+                            onChange={onChange}
                         />
                     </FormGridTile>
                 </Grid>

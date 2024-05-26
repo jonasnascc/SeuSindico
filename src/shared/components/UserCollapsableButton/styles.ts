@@ -25,8 +25,8 @@ export const CollapsableDiv = styled.div`
     }
 `
 
-export const UserAvatar = styled(Avatar)<{$size:string}>`
-    ${props => `height: ${props.$size} !important; width: ${props.$size} !important;`}
+export const UserAvatar = styled(Avatar)<{size:string}>`
+    ${props => `height: ${props.size} !important; width: ${props.size} !important;`}
 `
 
 export const Username = styled.span`

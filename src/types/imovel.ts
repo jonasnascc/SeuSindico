@@ -46,3 +46,22 @@ export type Comodo = {
     metrosQuadrados: number | null,
     detalhes: string
 } 
+
+export const EmptyImovel = {
+    codigo: null,
+    nome: "",
+    descricao: "",
+    quantidadeAndares: null,
+    espacosPorAndar: null,
+    endereco: {
+        enderecoId: null,
+        rua: "",
+        numero: null,
+        bairro: "",
+        cidade: "",
+        estado: "",
+        cep: "",
+        complemento: ""
+    },
+    espacos: []
+}
