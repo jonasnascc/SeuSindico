@@ -1,6 +1,6 @@
 import React from "react";
 import { AddComodoTag, ComodoTag, ComodosTags, DetailsContainer, EditarButton, EspacoSubHeaderDiv, Prop, PropName, PropsTile, SubHeader } from "./styles";
-import { Espaco } from "../../../../../types/imovel";
+import { Espaco } from "../../../../../../types/imovel";
 
 type EspacoDetailsType = {
     espaco : Espaco,

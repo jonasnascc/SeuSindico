@@ -65,3 +65,14 @@ export const EmptyImovel = {
     },
     espacos: []
 }
+
+export const EspacoVazio : Espaco = {
+    id: null,
+    tipo: "CASA",
+    espacoId: null,
+    andar: null,
+    numero: "",
+    metrosQuadrados: null,
+    comodos: [],
+    contrato : null
+}

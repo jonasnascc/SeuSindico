@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Comodo } from "../../../../../types/imovel";
+import React, { useState } from "react";
+import { Comodo } from "../../../../../../types/imovel";
 import { FormNumbersInput, InputLabel } from "../../styles";
 import { ComodoFormContainer } from "./styles";
 

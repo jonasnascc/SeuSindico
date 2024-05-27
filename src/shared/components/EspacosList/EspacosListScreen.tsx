@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Comodo, Espaco } from "../../../types/imovel";
 import { Grid } from "@mui/material";
-import { AddEspacoButton, AddEspacoTile, EspacosListTable, EspacosListTableContainer, TableColumn, TableHeaderColumn, TableRow} from "./styles";
-import { AddComodoForm } from "../ImovelForm/EspacosForm/ComodoForm/AddComodoForm";
+import { AddEspacoButton, AddEspacoTile } from "./styles";
+import { AddComodoForm } from "../../../pages/ImoveisPage/components/form/EspacosForm/ComodoForm/AddComodoForm";
 import { EspacosTable } from "./EspacosTable";
-import { EspacoDetails } from "../ImovelForm/EspacosForm/ComodosList/EspacoDetails";
+import { EspacoDetails } from "../../../pages/ImoveisPage/components/form/EspacosForm/ComodosList/EspacoDetails";
 
 type EspacosListProps = {
     espacos:Espaco[],
@@ -15,7 +15,6 @@ type EspacosListProps = {
 
 export const EspacosListScreen = ({espacos, onAddComodo, onAddNewEspaco, visible=true} : EspacosListProps) => {
     const [showAddComodo, setShowAddComodo] = useState(false);
-    const [comodos , setComodos] = useState<Comodo[]>([])
 
     const [selectedEspaco, setSelectedEspaco] = useState<Espaco|null>(null);
 
