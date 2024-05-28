@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Comodo, Espaco } from "../../../types/imovel";
 import { Grid } from "@mui/material";
 import { AddEspacoButton, AddEspacoTile } from "./styles";
-import { AddComodoForm } from "../../../pages/ImoveisPage/components/form/EspacosForm/ComodoForm/AddComodoForm";
+import { AddComodoForm } from "../../../pages/ImovelFormPage/components/Form/ComodoForm/AddComodoForm";
 import { EspacosTable } from "./EspacosTable";
-import { EspacoDetails } from "../../../pages/ImoveisPage/components/form/EspacosForm/ComodosList/EspacoDetails";
+import { EspacoDetails } from "../../../pages/ImovelFormPage/components/ComodosList/EspacoDetails";
 
 type EspacosListProps = {
     espacos:Espaco[],

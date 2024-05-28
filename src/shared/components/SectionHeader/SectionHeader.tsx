@@ -12,7 +12,7 @@ export const SectionHeader = ({label, children} : SectionHeaderProps) => {
     return(
         <HeaderBody>
             <Label>{label}</Label>
-            <Divider style={{backgroundColor:"#C2C2C2", margin:"2px 0"}}/>
+            <Divider style={{backgroundColor:"#9A9A9A", margin:"2px 0"}}/>
             <SideItems>
                 {children}
             </SideItems>

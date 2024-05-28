@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Comodo, Espaco, EspacoVazio } from "../../../../../types/imovel";
 import { ImovelFormCard } from "../../../../../shared/components/ImovelFormCard/ImovelFormCard";
 import { EspacosListScreen } from "../../../../../shared/components/EspacosList/EspacosListScreen";
-import { AddButtonScreen } from "./AddButtonScreen";
-import { RegistroEspacoScreen } from "./RegistroEspacoScreen";
 import { StepComponentProps } from "../../../../../shared/hooks/useImovelFormSteps";
 import { ImovelFormStep } from "../ImovelForm/ImovelFormStep";
+import { AddButtonScreen } from "./AddButtonScreen";
+import { RegistroEspacoScreen } from "./RegistroEspacoScreen";
 
 type EspacosFormProps = {
     onSaveEspaco : (espaco: Espaco) => void,

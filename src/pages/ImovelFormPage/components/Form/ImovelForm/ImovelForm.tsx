@@ -1,13 +1,13 @@
 import { Container } from "@mui/material"
 import React, { useEffect } from "react"
 import useImovelForm from "../../../../../shared/hooks/useImovelForm"
-import { SaveDiv, SaveButton } from "../../../styles"
+import { SaveDiv, SaveButton } from "../../../../ImoveisPage/styles"
+import { useImovelFormSteps } from "../../../../../shared/hooks/useImovelFormSteps"
+import { FormStepper } from "../../../../../shared/components/Forms/FormStepper/FormStepper"
 import { EnderecoForm } from "../EnderecoForm/EnderecoForm"
 import { EspacosForm } from "../EspacosForm/EspacosForm"
-import { ImovelDataForm } from "./ImovelDataForm"
 import { NameForm } from "./NameForm"
-import { useImovelFormSteps } from "../../../../../shared/hooks/useImovelFormSteps"
-import { FormStepper } from "../../../../../shared/components/FromStepper/FormStepper"
+import { ImovelDetailsForm } from "./ImovelDetailsForm"
 
 export const ImovelForm = () => {
     const {
@@ -36,20 +36,21 @@ export const ImovelForm = () => {
                 steps = {stepsSequence}
                 activeStep={currentStep}
             />
-            <ImovelDataForm 
+            <ImovelDetailsForm
                 imovel={imovel}
-                onChange={handleFormChange}
                 visible={steps.details.visible}
+                onChange={handleFormChange}
+                onSubmit={handleStepNext}
             />
             <NameForm 
                 imovel={imovel}
-                onChange={handleFormChange}
                 visible={steps.name.visible}
+                onChange={handleFormChange}
             />
             <EnderecoForm 
                 imovel={imovel}
-                onChange={(event:any) => handleFormChange(event, "endereco")}
                 visible={steps.address.visible}
+                onChange={(event:any) => handleFormChange(event, "endereco")}
             />
             <EspacosForm 
                 onSaveEspaco={handleSaveEspaco} 

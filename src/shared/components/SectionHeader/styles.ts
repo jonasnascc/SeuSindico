@@ -6,8 +6,7 @@ export const HeaderBody = styled.div`
 
 export const Label = styled.h1`
     font-size: 18px;
-    font-weight: 600;
-    color: #02947C;
+    font-weight: 500;
 `
 
 export const SideItems = styled.div`
@@ -18,7 +17,6 @@ export const SideItems = styled.div`
     top: 0;
     gap: 8px;
     flex-wrap: wrap;
-
     width: 100%;
 `
 

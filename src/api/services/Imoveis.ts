@@ -1,4 +1,4 @@
-import { Imovel } from "../../types/imovel";
+import { Endereco, Imovel } from "../../types/imovel";
 import axios from "../axios"
 
 export const getUserImoveis = async () => {
@@ -6,7 +6,9 @@ export const getUserImoveis = async () => {
         .then((resp) => resp.data)
         .catch((error) => console.log(error));
 
-    return data;
+    return data.map((data: any) => {
+        return {...data, endereco:formatEndereco(data.endereco)}
+    });
 }
 
 export const postImovel = async (imovel:Imovel) => {
@@ -31,4 +33,13 @@ export const deleteImovel = async (id : number) => {
     })
         .then((resp) => resp.data)
         .catch((error) => console.log(error));
+}
+
+const formatEndereco = (endereco : any) => {
+    if(!endereco.line) {
+        endereco.line = `Rua ${endereco.rua}, ${endereco.bairro}. ${endereco.cidade}-${endereco.estado}.`
+    }
+
+    console.log(endereco)
+    return endereco
 }

@@ -2,8 +2,8 @@ import React from "react";
 import { Grid } from "@mui/material";
 import { ImovelFormCard } from "../../../../../shared/components/ImovelFormCard/ImovelFormCard";
 import { Imovel } from "../../../../../types/imovel";
-import { FormGridTileVerticalDirection, InputLabel } from "../styles";
 import { StepComponentProps } from "../../../../../shared/hooks/useImovelFormSteps";
+import { FormGridTileVerticalDirection, InputLabel } from "../../../../../shared/components/Forms/styles";
 import { ImovelFormStep } from "../ImovelForm/ImovelFormStep";
 
 

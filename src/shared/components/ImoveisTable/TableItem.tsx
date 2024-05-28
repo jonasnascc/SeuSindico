@@ -3,8 +3,9 @@ import { Imovel } from "../../../types/imovel";
 import styled from "styled-components";
 import { Grid } from "@mui/material";
 import { HeaderItemType } from "./ImoveisTable";
-import { TableGridItem, TableItemCard } from "./styles";
+import { CardBody, CardHead, TableGridItem, TableItemCard } from "./styles";
 import { TableActionButtons } from "../TableActionButtons/TableActionButtons";
+import { EspacosTable } from "../EspacosTable/EspacosTable";
 
 type TableItemProps = {
     imovel:Imovel,
@@ -47,29 +48,39 @@ export const TableItem = ({imovel, columns} : TableItemProps) => {
 
     return (
         <TableItemCard $expanded={expanded}>
-            <Grid container height="100%" spacing={2}>
-                {
-                    columns.map((item, index) => (
-                        <Grid item key={index} xs={item.space}>
-                            <TableGridItem $justifyCenter={item.justifyCenter}>
-                                {
-                                    (item.prop !== "action") ? (
-                                        <>{accessColumn(item)}</>
-                                    ) : (
-                                        <>
-                                        <TableActionButtons 
-                                            onExpand={handleExpandItem} 
-                                            expanded={expanded}
-                                            imovel={imovel}
-                                        />
-                                        </>
-                                    )
-                                }
-                            </TableGridItem>
-                        </Grid>
-                    ))
-                }
-            </Grid>
+            <CardHead>
+                <Grid container height="120px" spacing={2}>
+                    {
+                        columns.map((item, index) => (
+                            <Grid item key={index} xs={item.space}>
+                                <TableGridItem $justifyCenter={item.justifyCenter}>
+                                    {
+                                        (item.prop !== "action") ? (
+                                            <>{accessColumn(item)}</>
+                                        ) : (
+                                            <>
+                                            <TableActionButtons 
+                                                onExpand={handleExpandItem} 
+                                                expanded={expanded}
+                                                imovel={imovel}
+                                            />
+                                            </>
+                                        )
+                                    }
+                                </TableGridItem>
+                            </Grid>
+                        ))
+                    }
+                </Grid>
+            </CardHead>
+            {
+                expanded&&(
+                    <CardBody>
+                        <EspacosTable espacos={imovel.espacos} imovelId={imovel?.codigo??-1}/>
+                    </CardBody>
+                )
+            }
+
         </TableItemCard>
         
     );

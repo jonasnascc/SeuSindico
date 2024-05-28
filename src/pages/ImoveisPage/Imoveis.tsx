@@ -1,56 +1,101 @@
-import { Container, Typography } from "@mui/material";
-import React, { useContext, useState } from "react";
-import styled from "styled-components";
+import { Container } from "@mui/material";
+import { useContext, useState } from "react";
 import { SectionHeader } from "../../shared/components/SectionHeader/SectionHeader";
 import { AuthContext } from "../../context/auth/AuthContext";
 import { useQuery } from "react-query";
 import { getUserImoveis } from "../../api/services/Imoveis";
-import { ImoveisTable } from "../../shared/components/ImoveisTable/ImoveisTable";
-
-import SearchIcon from '@mui/icons-material/Search';
-import { AddImovelButton, Search, SearchButton, SearchDiv, SearchInput, SearchText } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { ContentTable, ContentTableColumn } from "../../shared/components/Tables/ContentTable";
+import { Search, SearchDiv, SearchText, SearchInput, SearchButton } from "./styles";
+import SearchIcon from '@mui/icons-material/Search';
+
+const tableColumns : ContentTableColumn[] = [
+    {
+        label:"Nome",
+        propName: "nome",
+        isIndex : true
+    },
+    {
+        label: "Endereco",
+        propName: "endereco",
+        compositeProp: "line",
+        isIndex : true
+    },
+    {
+        label:"Descricao",
+        propName: "descricao",
+        isIndex : true
+    },
+]
 
 export const ImoveisPage = () => {
     const {user} = useContext(AuthContext);
     const navigate = useNavigate();
     const imoveisReq = useQuery(["imoveis"], () => getUserImoveis());
 
-    const [pesquisaValue, setPesquisaValue] = useState<string | null>(null);
+    const [searchInputValue, setSearchInputValue] = useState<string | null>(null);
+    const [search, setSearch] = useState<string | null>(null)
 
     const data = imoveisReq?.data ?? []
-    console.log(data);
 
     const handlePesquisaChange = (event : any) => {
-        if(event.target.value === "") setPesquisaValue(null);
+        if(event.target.value === "") setSearchInputValue(null);
         else {
-            setPesquisaValue(() => event.target.value);
+            setSearchInputValue(() => event.target.value);
         }
     } 
 
-    const handleAddImovel = () => {
-        navigate("adicionar")
+    const handleSubmit = (event:any) => {
+        event.preventDefault()
+        setSearch(searchInputValue)
+    }
+
+    const getColumnsWithButton = () => {
+        return [...tableColumns, 
+            {
+                label:"Espaços",
+                propName: "",
+                button : {
+                    label : "Gerenciar espaços",
+                    onClick : () => null
+                }
+            },
+        ]
     }
     
     if(user === null) return null;
     return (
-        <Container>
-            <SectionHeader label="Meus imóveis">
-                <AddImovelButton onClick={handleAddImovel}>Adicionar</AddImovelButton>
-            </SectionHeader>
+        <>
+            <SectionHeader label="Imóveis"></SectionHeader>
             <SearchDiv>
                 <SearchText>Pesquisar: </SearchText>
                 <Search>
                     <SearchInput 
+                        name="search"
                         onChange={handlePesquisaChange}
                         placeholder="Pesquise por palavras-chave"
                     />
-                    {/* <SearchButton>
+                    { <SearchButton onClick={handleSubmit}>
                         <SearchIcon/>
-                    </SearchButton> */}
+                    </SearchButton>}
                 </Search>
             </SearchDiv>
-            <ImoveisTable imoveis={data} searchValue={pesquisaValue}/>
-        </Container>
+            <ContentTable columns={getColumnsWithButton()} data={data} search={search}/>
+        </>
     )
 }
+/*            
+<SearchDiv>
+<SearchText>Pesquisar: </SearchText>
+<Search>
+<SearchInput 
+    onChange={handlePesquisaChange}
+    placeholder="Pesquise por palavras-chave"
+/>
+{ <SearchButton>
+    <SearchIcon/>
+</SearchButton>}
+</Search>
+</SearchDiv>
+<ImoveisTable imoveis={data} searchValue={pesquisaValue}/>
+*/

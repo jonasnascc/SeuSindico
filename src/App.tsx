@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Layout } from './shared/components/Layout';
+import { Layout } from './shared/components/Layout/Layout';
 import { LoginPage } from './pages/LoginPage/Login';
 import { SignupPage } from './pages/SignupPage/Signup';
 import { HomePage } from './pages/HomePage/Home';
 import { ImoveisPage } from './pages/ImoveisPage/Imoveis';
-import { AddImovel } from './pages/ImoveisPage/AddImovel';
+import { ImovelFormPage } from './pages/ImovelFormPage/ImovelFormPage';
 import { AuthPage } from './shared/components/Auth/AuthPage';
 import { RequireAuth } from './context/auth/RequireAuth';
 import { Espacos } from './pages/EspacosPage/Espacos';
@@ -25,8 +25,8 @@ function App() {
           </Route>
           <Route path='/imoveis'>
             <Route index element={<ImoveisPage/>} />
-            <Route path='adicionar' element={<AddImovel/>}/>
-            <Route path='editar' element={<AddImovel/>}/>
+            <Route path='adicionar' element={<ImovelFormPage/>}/>
+            <Route path='editar' element={<ImovelFormPage/>}/>
             <Route path='espacos' element={<Espacos/>}/>
             <Route path='espacos/alugar' element={<AluguelPage/>}/>
           </Route>

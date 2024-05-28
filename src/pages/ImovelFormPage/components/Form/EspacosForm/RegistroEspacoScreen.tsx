@@ -1,8 +1,9 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import { EspacoFormButtons } from "../../../../../shared/components/EspacoFormButtons.tsx/EspacoFormButtons";
-import { RegistroEspacoContainer, FormGridTile, TipoSelect, FormNumbersInput, InputLabel } from "../styles";
 import { Espaco } from "../../../../../types/imovel";
+import { FormGridTile, TipoSelect, FormNumbersInput, InputLabel } from "../../../../../shared/components/Forms/styles";
+import { RegistroEspacoContainer } from "../../Espaco/styles";
 
 type RegistroEspacoScreenProps = {
     onFormChange : (event:any) => void,

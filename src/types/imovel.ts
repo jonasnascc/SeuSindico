@@ -24,6 +24,7 @@ export type Endereco = {
     estado: string,
     cep: string,
     complemento: string
+    line?:string
 }
 
 export type Espaco = {

@@ -2,9 +2,10 @@ import React from "react";
 import { Grid } from "@mui/material";
 import { Imovel } from "../../../../../types/imovel";
 import { ImovelFormCard } from "../../../../../shared/components/ImovelFormCard/ImovelFormCard";
-import { FormGridTile, NameInput, DescricaoTextArea, InputLabel } from "../styles";
 import { ImovelFormStep } from "./ImovelFormStep";
 import { StepComponentProps } from "../../../../../shared/hooks/useImovelFormSteps";
+import { FormGridTile, InputLabel, NameInput } from "../../../../../shared/components/Forms/styles";
+import { DescricaoTextArea } from "../styles";
 
 type NameFormProps = {
     imovel:Imovel,
