@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CntTable, TblCol, TblHeaderCol, TblHeaderRow, TblRow, TableContainer, TblButton, NoResultsDiv } from "./styles";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { ContentTableOptions, TableOption } from "./ContentTableOptions";
 
 
 export type ContentTableColumn = {
@@ -19,9 +20,11 @@ type ContentTableProps = {
     data : any[],
     columns : ContentTableColumn[],
     search ?: string | null
+    options ?: TableOption[]
 }
 
-export const ContentTable = ({data,columns, search} : ContentTableProps) => {
+export const ContentTable = ({data, columns, search, options} : ContentTableProps) => {
+    const [tableColumns, setTableColumns] = useState<ContentTableColumn[]>(columns)
 
     const getColumnValFromData = (data:any, index:number) => {
         const column = columns[index]
@@ -62,15 +65,22 @@ export const ContentTable = ({data,columns, search} : ContentTableProps) => {
     }
 
     const getRowsFromData = (data:any) => {
-        return columns.map((col, index) => (
-            <TblCol key={index}>{getColumnValFromData(data, index)}</TblCol>
-        ))
+        return (
+            <>
+            {
+            tableColumns.map((col, index) => (
+                <TblCol key={index}>{getColumnValFromData(data, index)}</TblCol>
+            ))
+            }
+            {options&&<TblCol key={columns.length}><ContentTableOptions options={options}/></TblCol>}
+            </>
+        )
     }
 
     const filterData = (obj: any) => {
         if(!search) return true;
 
-        const cols = columns.filter(col => col.isIndex);
+        const cols = tableColumns.filter(col => col.isIndex);
 
         let valid = false;
 
@@ -89,7 +99,7 @@ export const ContentTable = ({data,columns, search} : ContentTableProps) => {
     }
 
     const getFilteredTable = () => {
-        if(data.length===0 || columns.length===0) return null;
+        if(data.length===0 || tableColumns.length===0) return null;
 
         const filteredData = data.filter(obj => filterData(obj))
 
@@ -102,10 +112,11 @@ export const ContentTable = ({data,columns, search} : ContentTableProps) => {
                     <thead>
                     <TblHeaderRow>
                     {
-                        columns.map((col, index) => (
+                        tableColumns.map((col, index) => (
                             <TblHeaderCol key={`${col.propName}-${index}`}>{col.label}</TblHeaderCol>
                         ))
                     }
+                    {options&&<TblHeaderCol key="options">{` `}</TblHeaderCol>}
                     </TblHeaderRow>
                     </thead>
                     <tbody>

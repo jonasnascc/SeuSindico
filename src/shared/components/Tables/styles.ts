@@ -24,6 +24,7 @@ export const TblHeaderRow = styled.tr`
 ` 
 
 export const TblCol = styled.td`
+    position: relative;
     padding: 10px 1vw;
     height: 65px;
     font-size: 14px;
@@ -63,5 +64,35 @@ export const NoResultsDiv = styled.div`
     width: 100%;
     font-size: 14px;
     text-align: center;
+`
 
+export const OptionsButtonTile = styled.div`
+    height: 100%;
+`
+
+export const OptionsTile = styled.ul`
+    padding: 0;
+`
+
+export const TblOptionAnchor = styled.li`
+    padding: 0 20px;
+    list-style: none;
+    line-height: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .3vw;
+
+    &:hover {
+        background-color: rgba(0,0,0,.1);
+    }
+`
+
+export const OptionsIconButton = styled.button`
+    height: 100%;
+    padding: 2px 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 `

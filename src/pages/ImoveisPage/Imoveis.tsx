@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { ContentTable, ContentTableColumn } from "../../shared/components/Tables/ContentTable";
 import { Imovel } from "../../types/imovel";
 import { SearchTile } from "../../shared/components/SearchTile/SearchTile";
+import { TableOption } from "../../shared/components/Tables/ContentTableOptions";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 const tableColumns : ContentTableColumn[] = [
     {
@@ -28,6 +31,7 @@ const tableColumns : ContentTableColumn[] = [
     },
 ]
 
+
 export const ImoveisPage = () => {
     const {user} = useContext(AuthContext);
     const navigate = useNavigate();
@@ -40,6 +44,27 @@ export const ImoveisPage = () => {
     const handleSubmit = (searchVal : any) => {
         setSearch(searchVal)
     }
+
+    const handleEdit = () => {
+
+    }
+
+    const handleDelete = () => {
+
+    }
+
+    const tableOptions : TableOption[] = [
+        {
+            label: "Editar",
+            onClick : handleEdit,
+            icon : <EditIcon/>
+        },
+        {
+            label: "Deletar",
+            onClick : () => handleDelete,
+            icon : <DeleteIcon/>
+        },
+    ]
 
     const getColumnsWithButton = () => {
         return [...tableColumns, 
@@ -59,7 +84,12 @@ export const ImoveisPage = () => {
         <>
             <SectionHeader label="Imóveis"></SectionHeader>
             <SearchTile onSubmit={handleSubmit}/>
-            <ContentTable columns={getColumnsWithButton()} data={data} search={search}/>
+            <ContentTable 
+                columns={getColumnsWithButton()} 
+                data={data} 
+                search={search}
+                options={tableOptions}
+            />
         </>
     )
 }
