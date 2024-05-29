@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { StyledBtn } from "../Buttons/styles";
 
 export const TableContainer = styled.div`
     border: solid 1px #9A9A9A;
@@ -36,28 +37,8 @@ export const TblHeaderCol = styled.th`
     font-size: 14px;
 `
 
-export const TblButton = styled.button`
-    background-color: transparent;
-    border: solid 1px #4B31A1;
-    border-radius: 10px;
-    color: #4B31A1;
-    box-shadow: none;
-    cursor: pointer;
-    font-size: 12px;
-    padding: 5px;
-    transition: background-color .5s ease, color .7s ease;
+export const TblButton = styled(StyledBtn)`
 
-    &:hover {
-        background-color: #4B31A1;
-        color: white;
-    }
-
-    &:active {
-        transition: none;
-        border: solid 1px #10CCAD;
-        background-color: #10CCAD;
-        color: white;
-    }
 `
 
 export const NoResultsDiv = styled.div`

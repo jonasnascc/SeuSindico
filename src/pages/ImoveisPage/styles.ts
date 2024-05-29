@@ -15,6 +15,10 @@ export const AddImovelButton = styled.button`
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 `
 
+export const SearchBox = styled.div`
+    margin-top: 10px;
+`
+
 export const SaveDiv = styled.div`
     display: flex;
     justify-content: end;
@@ -30,4 +34,12 @@ export const SaveButton = styled.button`
     color: white;
     cursor: pointer;
 
+`
+
+export const BtnsTile = styled.div`
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    gap: .5vw;
+    flex-wrap: wrap;
 `

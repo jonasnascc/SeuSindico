@@ -14,7 +14,6 @@ export const Search = styled.form`
 export const SearchDiv = styled.div`
     display: flex;
     align-items: center;
-    margin: 25px 0;
     width: 100%;
     gap: 5px;
 `
@@ -39,6 +38,7 @@ export const SearchButton = styled.button`
     cursor: pointer;
     transition: background-color .5s ease;
     width: 60px;
+    height: 30px;
 
     &:hover {
         background-color: #10CCAD;
@@ -46,6 +46,7 @@ export const SearchButton = styled.button`
 
     &:active {
         transition: none;
+        border-color: #FF3D00;
         background-color: #FF3D00;
     }
 

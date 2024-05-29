@@ -57,8 +57,8 @@ export const ContentTableOptions = ({options, data}: ContentTableOptionsProps) =
             >
                 <OptionsTile>
                     {
-                        options.map(opt => (
-                            <TblOptionAnchor onClick={() => handleOptionClick(opt)}>{opt.icon}{opt.label}</TblOptionAnchor>
+                        options.map((opt, index) => (
+                            <TblOptionAnchor key={index} onClick={() => handleOptionClick(opt)}>{opt.icon}{opt.label}</TblOptionAnchor>
                         ))
                     }
                 </OptionsTile>

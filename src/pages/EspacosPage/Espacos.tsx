@@ -6,6 +6,7 @@ import { Imovel } from "../../types/imovel";
 import { EspacosTable } from "../../shared/components/EspacosTable/EspacosTable";
 import { ContentTable, ContentTableColumn } from "../../shared/components/Tables/ContentTable";
 import { SearchTile } from "../../shared/components/SearchTile/SearchTile";
+import { SearchBox } from "./styles";
 
 const tableColumns : ContentTableColumn[] = [
     {
@@ -62,7 +63,7 @@ export const Espacos = () => {
     return (
         <>
             <SectionHeader label="Espaços" onBack={handleBack}/>
-            <SearchTile onSubmit={handleSubmitSearch}/>
+            <SearchBox><SearchTile onSubmit={handleSubmitSearch}/></SearchBox>
             {imovel && <ContentTable data={imovel?.espacos??[]} columns={tableColumns} search={search}/>}
         </>
     );

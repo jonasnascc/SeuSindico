@@ -11,6 +11,8 @@ import { SearchTile } from "../../shared/components/SearchTile/SearchTile";
 import { TableOption } from "../../shared/components/Tables/ContentTableOptions";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { StyledBtn } from "../../shared/components/Buttons/styles";
+import { BtnsTile, SearchBox } from "./styles";
 
 const tableColumns : ContentTableColumn[] = [
     {
@@ -55,6 +57,10 @@ export const ImoveisPage = () => {
         navigate("/imoveis/edit", {state:{imovelData:imovel, from:"/imoveis"}})
     }
 
+    const handleAddNew = () => {
+        navigate("/imoveis/new")
+    }
+
     const handleDelete = (imovel : Imovel) => {
         if(imovel.codigo) deleteMutation.mutate(imovel.codigo) 
     }
@@ -91,7 +97,11 @@ export const ImoveisPage = () => {
     return (
         <>
             <SectionHeader label="Imóveis"></SectionHeader>
-            <SearchTile onSubmit={handleSubmit}/>
+            <SearchBox><SearchTile onSubmit={handleSubmit}/></SearchBox>
+            <BtnsTile>
+                <StyledBtn onClick={handleAddNew}>Adicionar</StyledBtn>
+                <StyledBtn>Selecionar</StyledBtn>
+            </BtnsTile>
             <ContentTable 
                 columns={getColumnsWithButton()} 
                 data={data} 
