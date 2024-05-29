@@ -9,22 +9,36 @@ export type ContentTableColumn = {
     compositeProp ?: string,
     button ?: {
         label : string,
-        onClick : () => void
+        onClick : any
     },
-    isIndex ?: boolean
+    isIndex ?: boolean,
+    nullPlaceholder ?: string
 }
 
 type ContentTableProps = {
     data : any[],
     columns : ContentTableColumn[],
-    search : string | null
+    search ?: string | null
 }
 
 export const ContentTable = ({data,columns, search} : ContentTableProps) => {
 
     const getColumnValFromData = (data:any, index:number) => {
         const column = columns[index]
-        if(column.button) return getTblButton(column.button)
+        if(column.button){
+            const propName = column.propName;
+            if(propName && propName !== "") {
+                if(propName === "*") {
+                    return getTblButton(column.button, data)
+                }
+                else {
+                    if(Object.keys(data).includes(propName))
+                        return getTblButton(column.button, data[propName])
+                }
+            }
+            
+            return getTblButton(column.button)
+        }
 
         const props = Object.keys(data)
         
@@ -32,13 +46,19 @@ export const ContentTable = ({data,columns, search} : ContentTableProps) => {
         
         if(column.compositeProp) {
             const obj = data[column.propName as keyof typeof data]
+
+            if(obj === null && column.nullPlaceholder) return column.nullPlaceholder
+            
             return obj[column.compositeProp]
         }
         else return data[column.propName]
     }
 
-    const getTblButton = (button : {label:string, onClick:() => void}) => {
-        return (<TblButton type="button" onClick={button.onClick}>{button.label}</TblButton>)
+    const getTblButton = (button : {label:string, onClick:any}, buttonArgs ?: any) => {
+        let btnFn = button.onClick
+        if(buttonArgs) btnFn = () => button.onClick(buttonArgs)
+
+        return (<TblButton type="button" onClick={btnFn}>{button.label}</TblButton>)
     }
 
     const getRowsFromData = (data:any) => {
@@ -55,8 +75,9 @@ export const ContentTable = ({data,columns, search} : ContentTableProps) => {
         let valid = false;
 
         cols.forEach((col, index) => {
-            const val = getColumnValFromData(obj, index)
-            if(typeof val === "string") {
+            let val = getColumnValFromData(obj, index)
+            if(typeof val !== "object") {
+                val = String(val)
                 const normalizedVal = val.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 const normalizedSearch = search.toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 

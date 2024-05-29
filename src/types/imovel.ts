@@ -5,7 +5,7 @@ export type Imovel = {
     quantidadeAndares: number | null,
     espacosPorAndar: number | null,
     endereco: Endereco | null,
-    espacos: Espaco[]
+    espacos: Espaco[],
 }
 
 export type SimpleImovel = {
@@ -35,6 +35,7 @@ export type Espaco = {
     numero: string,
     metrosQuadrados: number | null,
     comodos: Comodo[],
+    comodosLine ?: string,
     contrato : {
         contratoId : number | null,
         statusContrato : "PENDENTE" | "ASSINADO"

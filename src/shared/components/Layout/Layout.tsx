@@ -18,8 +18,8 @@ export const Layout = () => {
 
     return (            
         <Container>
-            <LayoutGrid container spacing={"1.8vw"}>
-                <Grid item xs={12} sm={12} md={4}>
+            <LayoutGrid container spacing={"1vw"}>
+                <Grid item xs={12} sm={12} md={3}>
                     <SideDiv>
                         <LogoContainer>
                             <LogoImg src={logo} alt="logo"/>
@@ -28,7 +28,7 @@ export const Layout = () => {
                         <MenuCard></MenuCard>
                     </SideDiv>
                 </Grid>
-                <Grid item xs={12} sm={12} md={8}>
+                <Grid item xs={12} sm={12} md={9}>
                     <BodyCard>
                         <Outlet/>
                     </BodyCard>

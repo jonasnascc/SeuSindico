@@ -6,8 +6,8 @@ import { useQuery } from "react-query";
 import { getUserImoveis } from "../../api/services/Imoveis";
 import { useNavigate } from "react-router-dom";
 import { ContentTable, ContentTableColumn } from "../../shared/components/Tables/ContentTable";
-import { Search, SearchDiv, SearchText, SearchInput, SearchButton } from "./styles";
-import SearchIcon from '@mui/icons-material/Search';
+import { Imovel } from "../../types/imovel";
+import { SearchTile } from "../../shared/components/SearchTile/SearchTile";
 
 const tableColumns : ContentTableColumn[] = [
     {
@@ -33,31 +33,22 @@ export const ImoveisPage = () => {
     const navigate = useNavigate();
     const imoveisReq = useQuery(["imoveis"], () => getUserImoveis());
 
-    const [searchInputValue, setSearchInputValue] = useState<string | null>(null);
     const [search, setSearch] = useState<string | null>(null)
 
     const data = imoveisReq?.data ?? []
 
-    const handlePesquisaChange = (event : any) => {
-        if(event.target.value === "") setSearchInputValue(null);
-        else {
-            setSearchInputValue(() => event.target.value);
-        }
-    } 
-
-    const handleSubmit = (event:any) => {
-        event.preventDefault()
-        setSearch(searchInputValue)
+    const handleSubmit = (searchVal : any) => {
+        setSearch(searchVal)
     }
 
     const getColumnsWithButton = () => {
         return [...tableColumns, 
             {
                 label:"Espaços",
-                propName: "",
+                propName: "*",
                 button : {
                     label : "Gerenciar espaços",
-                    onClick : () => null
+                    onClick : (imovel : Imovel) => navigate(`/imoveis/espacos`, {state:{imovelData : imovel, from: "/imoveis"}})
                 }
             },
         ]
@@ -67,19 +58,7 @@ export const ImoveisPage = () => {
     return (
         <>
             <SectionHeader label="Imóveis"></SectionHeader>
-            <SearchDiv>
-                <SearchText>Pesquisar: </SearchText>
-                <Search>
-                    <SearchInput 
-                        name="search"
-                        onChange={handlePesquisaChange}
-                        placeholder="Pesquise por palavras-chave"
-                    />
-                    { <SearchButton onClick={handleSubmit}>
-                        <SearchIcon/>
-                    </SearchButton>}
-                </Search>
-            </SearchDiv>
+            <SearchTile onSubmit={handleSubmit}/>
             <ContentTable columns={getColumnsWithButton()} data={data} search={search}/>
         </>
     )

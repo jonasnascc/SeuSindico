@@ -1,4 +1,4 @@
-import { Endereco, Imovel } from "../../types/imovel";
+import { Comodo, Endereco, Espaco, Imovel } from "../../types/imovel";
 import axios from "../axios"
 
 export const getUserImoveis = async () => {
@@ -7,7 +7,11 @@ export const getUserImoveis = async () => {
         .catch((error) => console.log(error));
 
     return data.map((data: any) => {
-        return {...data, endereco:formatEndereco(data.endereco)}
+        return {
+            ...data, 
+            endereco:formatEndereco(data.endereco),
+            espacos: formatEspacos(data.espacos)
+        }
     });
 }
 
@@ -39,7 +43,27 @@ const formatEndereco = (endereco : any) => {
     if(!endereco.line) {
         endereco.line = `Rua ${endereco.rua}, ${endereco.bairro}. ${endereco.cidade}-${endereco.estado}.`
     }
-
-    console.log(endereco)
     return endereco
+}
+
+const formatEspacos = (espacos : any[]) => {
+    return espacos.map(esp => formatEspacoComodos(esp))
+}
+
+const formatEspacoComodos = (espaco : any) => {
+    if(!espaco.comodos || espaco.comodoLine) return espaco;
+
+    const comodos = espaco.comodos
+    
+    let line = ""
+    comodos.forEach((com : any) => {
+        if(com.nome)
+            line += ", " + com.nome
+    })
+
+
+    return {
+        ...espaco,
+        comodosLine : line==="" ? "Não há" : line
+    }
 }
