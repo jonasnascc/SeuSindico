@@ -25,8 +25,8 @@ function App() {
           </Route>
           <Route path='/imoveis'>
             <Route index element={<ImoveisPage/>} />
-            <Route path='adicionar' element={<ImovelFormPage/>}/>
-            <Route path='editar' element={<ImovelFormPage/>}/>
+            <Route path='add' element={<ImovelFormPage/>}/>
+            <Route path='edit' element={<ImovelFormPage/>}/>
             <Route path='espacos' element={<Espacos/>}/>
             <Route path='espacos/alugar' element={<AluguelPage/>}/>
           </Route>

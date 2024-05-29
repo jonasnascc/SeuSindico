@@ -72,7 +72,7 @@ export const ContentTable = ({data, columns, search, options} : ContentTableProp
                 <TblCol key={index}>{getColumnValFromData(data, index)}</TblCol>
             ))
             }
-            {options&&<TblCol key={columns.length}><ContentTableOptions options={options}/></TblCol>}
+            {options&&<TblCol key={columns.length}><ContentTableOptions options={options} data={data}/></TblCol>}
             </>
         )
     }
@@ -107,7 +107,8 @@ export const ContentTable = ({data, columns, search, options} : ContentTableProp
             Não há resultados para mostrar
         </NoResultsDiv>
 
-        else return <TableContainer>
+        else return (
+            <TableContainer>
                 <CntTable>
                     <thead>
                     <TblHeaderRow>
@@ -130,6 +131,7 @@ export const ContentTable = ({data, columns, search, options} : ContentTableProp
                     </tbody>
                 </CntTable>
             </TableContainer>
+        )
     }
 
     return (

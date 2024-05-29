@@ -2,8 +2,8 @@ import { Container } from "@mui/material";
 import { useContext, useState } from "react";
 import { SectionHeader } from "../../shared/components/SectionHeader/SectionHeader";
 import { AuthContext } from "../../context/auth/AuthContext";
-import { useQuery } from "react-query";
-import { getUserImoveis } from "../../api/services/Imoveis";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { deleteImovel, getUserImoveis } from "../../api/services/Imoveis";
 import { useNavigate } from "react-router-dom";
 import { ContentTable, ContentTableColumn } from "../../shared/components/Tables/ContentTable";
 import { Imovel } from "../../types/imovel";
@@ -33,11 +33,17 @@ const tableColumns : ContentTableColumn[] = [
 
 
 export const ImoveisPage = () => {
+    const [search, setSearch] = useState<string | null>(null)
+
     const {user} = useContext(AuthContext);
     const navigate = useNavigate();
+    const queryClient = useQueryClient()
+
     const imoveisReq = useQuery(["imoveis"], () => getUserImoveis());
 
-    const [search, setSearch] = useState<string | null>(null)
+    const deleteMutation = useMutation("delete-imovel", (id: number) => deleteImovel(id), {
+        onSuccess: () => queryClient.invalidateQueries(["imoveis"])
+    })
 
     const data = imoveisReq?.data ?? []
 
@@ -45,24 +51,26 @@ export const ImoveisPage = () => {
         setSearch(searchVal)
     }
 
-    const handleEdit = () => {
-
+    const handleEdit = (imovel : Imovel) => {
+        navigate("/imoveis/edit", {state:{imovelData:imovel, from:"/imoveis"}})
     }
 
-    const handleDelete = () => {
-
+    const handleDelete = (imovel : Imovel) => {
+        if(imovel.codigo) deleteMutation.mutate(imovel.codigo) 
     }
 
     const tableOptions : TableOption[] = [
         {
             label: "Editar",
             onClick : handleEdit,
-            icon : <EditIcon/>
+            icon : <EditIcon/>,
+            objIsFnArg:true
         },
         {
             label: "Deletar",
-            onClick : () => handleDelete,
-            icon : <DeleteIcon/>
+            onClick : handleDelete,
+            icon : <DeleteIcon/>,
+            objIsFnArg:true
         },
     ]
 

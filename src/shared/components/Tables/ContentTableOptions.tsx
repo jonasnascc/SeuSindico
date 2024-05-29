@@ -6,14 +6,16 @@ import { OptionsButtonTile, OptionsIconButton, OptionsTile, TblOptionAnchor } fr
 export type TableOption = {
     label : string,
     onClick : any,
-    icon : any
+    icon : any,
+    objIsFnArg ?: boolean
 }
 
 type ContentTableOptionsProps = {
-    options : TableOption[]
+    options : TableOption[],
+    data?:any
 }
 
-export const ContentTableOptions = ({options}: ContentTableOptionsProps) => {
+export const ContentTableOptions = ({options, data}: ContentTableOptionsProps) => {
     const divRef = useRef<HTMLDivElement>(null) 
     const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
 
@@ -26,7 +28,8 @@ export const ContentTableOptions = ({options}: ContentTableOptionsProps) => {
     };
 
     const handleOptionClick = (option : TableOption) => {
-        option.onClick()
+        if(data && option.objIsFnArg) option.onClick(data)
+        else option.onClick()
         handleClose()
     }
 
