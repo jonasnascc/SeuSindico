@@ -44,6 +44,11 @@ export const SearchButton = styled.button`
         background-color: #10CCAD;
     }
 
+    &:active {
+        transition: none;
+        background-color: #FF3D00;
+    }
+
 `
 
 export const ClearIconDiv = styled.div`

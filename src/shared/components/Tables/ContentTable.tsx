@@ -1,5 +1,5 @@
 import React from "react";
-import { CntTable, TblCol, TblHeaderCol, TblHeaderRow, TblRow, TableContainer, TblButton } from "./styles";
+import { CntTable, TblCol, TblHeaderCol, TblHeaderRow, TblRow, TableContainer, TblButton, NoResultsDiv } from "./styles";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
@@ -88,30 +88,42 @@ export const ContentTable = ({data,columns, search} : ContentTableProps) => {
         return valid;
     }
 
-    if(data.length===0 || columns.length===0) return null;
+    const getFilteredTable = () => {
+        if(data.length===0 || columns.length===0) return null;
+
+        const filteredData = data.filter(obj => filterData(obj))
+
+        if(filteredData.length === 0) return <NoResultsDiv>
+            Não há resultados para mostrar
+        </NoResultsDiv>
+
+        else return <TableContainer>
+                <CntTable>
+                    <thead>
+                    <TblHeaderRow>
+                    {
+                        columns.map((col, index) => (
+                            <TblHeaderCol key={`${col.propName}-${index}`}>{col.label}</TblHeaderCol>
+                        ))
+                    }
+                    </TblHeaderRow>
+                    </thead>
+                    <tbody>
+                    {
+                        filteredData.map((obj, index) => (
+                            <TblRow key={index}>
+                                {getRowsFromData(obj)}
+                            </TblRow>
+                        ))
+                    }
+                    </tbody>
+                </CntTable>
+            </TableContainer>
+    }
+
     return (
-        <TableContainer>
-            <CntTable>
-                <thead>
-                <TblHeaderRow>
-                {
-                    columns.map((col, index) => (
-                        <TblHeaderCol key={`${col.propName}-${index}`}>{col.label}</TblHeaderCol>
-                    ))
-                }
-                </TblHeaderRow>
-                </thead>
-                <tbody>
-                {
-                    data.filter(obj => filterData(obj)).map((obj, index) => (
-                        <TblRow key={index}>
-                            {getRowsFromData(obj)}
-                        </TblRow>
-                    ))
-                }
-                </tbody>
-            </CntTable>
-        </TableContainer>
-        
+        <>
+        {getFilteredTable()}
+        </>
     );
 }

@@ -58,3 +58,10 @@ export const TblButton = styled.button`
         color: white;
     }
 `
+
+export const NoResultsDiv = styled.div`
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+
+`
