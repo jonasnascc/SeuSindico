@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { SearchDiv, SearchText, SearchInput, SearchButton, Search } from "./styles";
+import { SearchDiv, SearchText, SearchInput, SearchButton, Search, ClearIconDiv } from "./styles";
 import SearchIcon from '@mui/icons-material/Search';
+import ClearIcon from '@mui/icons-material/Clear';
 
 type SearchTileProps = {
     onChange ?: (event?:any) => void,
@@ -20,6 +21,11 @@ export const SearchTile = ({onChange, onSubmit} : SearchTileProps) => {
         if(onSubmit) onSubmit(search)
     }
 
+    const handleClear = () => {
+        setSearch("")
+        if(onSubmit) onSubmit("")
+    }
+
     return (
         <SearchDiv>
             <SearchText>Pesquisar: </SearchText>
@@ -28,8 +34,16 @@ export const SearchTile = ({onChange, onSubmit} : SearchTileProps) => {
                     name="search"
                     onChange={handleChange}
                     placeholder="Pesquise por palavras-chave"
+                    value={search}
                 />
-                { <SearchButton onClick={handleSubmit}>
+                {
+                search.length > 0 &&(
+                    <ClearIconDiv onClick={handleClear}>
+                        <ClearIcon/>
+                    </ClearIconDiv>
+                )
+                }
+                {<SearchButton onClick={handleSubmit}>
                     <SearchIcon/>
                 </SearchButton>}
             </Search>

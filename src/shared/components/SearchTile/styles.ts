@@ -6,6 +6,7 @@ export const SearchText = styled.span`
 `
 
 export const Search = styled.form`
+    position: relative;
     display: flex;
     flex: 1;
 `
@@ -24,6 +25,7 @@ export const SearchInput = styled.input`
     height: 30px;
     border: solid 1px #9A9A9A;
     font-size: 14px;
+    padding-right: 30px;
 `
 
 export const SearchButton = styled.button`
@@ -42,4 +44,20 @@ export const SearchButton = styled.button`
         background-color: #10CCAD;
     }
 
+`
+
+export const ClearIconDiv = styled.div`
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width : 20px;
+    right: 60px;
+    color: #8e6dfb;
+    cursor : pointer;
+    transition: color .5s ease;
+    &:hover {
+        color: #10CCAD;
+    }
 `
