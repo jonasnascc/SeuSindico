@@ -1,4 +1,4 @@
-import { Container } from "@mui/material"
+import { Container, ThemeProvider } from "@mui/material"
 import { useEffect } from "react"
 import useImovelForm from "../../../../../shared/hooks/useImovelForm"
 import { ButtonsDiv } from "../../../../ImoveisPage/styles"
@@ -36,37 +36,37 @@ export const ImovelForm = () => {
     
     return (
         <Container>
-            <StepperTile>
-                <FormStepper
-                    steps = {stepsSequence}
-                    activeStep={currentStep}
-                    onStepChange={handleChangeStep}
-                />
-            </StepperTile>
-            <Formik 
-                initialValues={{...EmptyImovel}} 
-                onSubmit={async (values) => console.log(values)}
-            >
-                <Form>
-                    <ImovelDetailsForm visible={steps.details.visible}/>
-                    
-                    <NameForm visible={steps.name.visible}/>
+                <StepperTile>
+                    <FormStepper
+                        steps = {stepsSequence}
+                        activeStep={currentStep}
+                        onStepChange={handleChangeStep}
+                    />
+                </StepperTile>
+                <Formik 
+                    initialValues={{...EmptyImovel}} 
+                    onSubmit={async (values) => console.log(values)}
+                >
+                    <Form>
+                        <ImovelDetailsForm visible={steps.details.visible}/>
+                        
+                        <NameForm visible={steps.name.visible}/>
 
-                    <EnderecoForm visible={steps.address.visible}/>
+                        <EnderecoForm visible={steps.address.visible}/>
 
-                    <EspacosForm 
-                        onSaveEspaco={handleSaveEspaco} 
-                        espacos={imovel.espacos}
-                        onAddComodo={handleAddComodo}
-                        visible={steps.spaces.visible}
-                    />                
-                    <ButtonsDiv>
-                        <FormButton type="button" onClick={handleStepBack}>Back</FormButton>
-                        <FormButton type="button" onClick={handleStepNext}>Next</FormButton>
-                        <FormButton type="submit">Salvar Imóvel</FormButton>
-                    </ButtonsDiv>
-                </Form>
-            </Formik>
+                        <EspacosForm 
+                            onSaveEspaco={handleSaveEspaco} 
+                            espacos={imovel.espacos}
+                            onAddComodo={handleAddComodo}
+                            visible={steps.spaces.visible}
+                        />                
+                        <ButtonsDiv>
+                            <FormButton type="button" onClick={handleStepBack}>Back</FormButton>
+                            <FormButton type="button" onClick={handleStepNext}>Next</FormButton>
+                            <FormButton type="submit">Salvar Imóvel</FormButton>
+                        </ButtonsDiv>
+                    </Form>
+                </Formik>
         </Container>
     )
 }

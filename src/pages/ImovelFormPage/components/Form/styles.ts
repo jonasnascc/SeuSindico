@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { StyledBtn } from "../../../../shared/components/Buttons/styles";
+import { Grid } from "@mui/material";
 
 export const FormDescription = styled.h3`
     font-weight: 500;
@@ -65,4 +66,14 @@ export const StepperTile = styled.div`
 
 export const FormButton = styled(StyledBtn)`
 
+`
+
+export const InputContainer = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
 `

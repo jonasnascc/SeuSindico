@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material"
 import styled from "styled-components"
 
 export const FormGridTile = styled.div`
@@ -37,11 +38,4 @@ export const TipoSelect = styled.select`
 export const InputLabel = styled.span`
     font-weight: 400;
     margin: 10px;
-`
-
-
-export const NameInput = styled.input`
-    width: 90%;
-    margin: 0 20%;
-    text-align: center;
 `
