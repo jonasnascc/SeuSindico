@@ -6,6 +6,22 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './context/auth/AuthProvider';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ThemeProvider, createTheme } from '@mui/material';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#4B31A1",
+    },
+    secondary: {
+      main: "#02947C",
+    },
+    error: {
+      main: "#FF3D00"
+    }
+  },
+});
+
 
 const queryClient = new QueryClient();
 
@@ -14,13 +30,16 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-      </AuthProvider>
-    </QueryClientProvider>
+    <ThemeProvider theme={theme}>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <BrowserRouter>
+              <App />
+          </BrowserRouter>
+        </AuthProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
+
   </React.StrictMode>
 );
 

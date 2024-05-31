@@ -45,30 +45,24 @@ export const EspacosForm = ({onSaveEspaco, espacos, onAddComodo, visible} : Espa
 
     return (
         <ImovelFormStep visible={visible}>
-            <ImovelFormCard
-                label = "Adicione um espaço ao seu imóvel"
-                headerGridScreens={{xs:12}}
-                bodyGridScreens={{xs:12}}
-            >
-                <AddButtonScreen 
-                    onButtonClick={handleAddButton}
-                    visible={espacos.length === 0 && displayPlusPage}
-                />
+            <AddButtonScreen 
+                onButtonClick={handleAddButton}
+                visible={espacos.length === 0 && displayPlusPage}
+            />
 
-                <RegistroEspacoScreen
-                    onSaveEspaco={handleSave}
-                    onCancel = {handleCancel}
-                    onFormChange={handleChange}
-                    visible={registrandoEspaco}
-                />
+            <RegistroEspacoScreen
+                onSaveEspaco={handleSave}
+                onCancel = {handleCancel}
+                onFormChange={handleChange}
+                visible={registrandoEspaco}
+            />
 
-                <EspacosListScreen
-                    espacos={espacos}
-                    visible={espacos.length > 0 && !registrandoEspaco}
-                    onAddComodo={onAddComodo}
-                    onAddNewEspaco={handleAddButton}
-                />
-            </ImovelFormCard>
+            <EspacosListScreen
+                espacos={espacos}
+                visible={espacos.length > 0 && !registrandoEspaco}
+                onAddComodo={onAddComodo}
+                onAddNewEspaco={handleAddButton}
+            />
         </ImovelFormStep>
     )
 }

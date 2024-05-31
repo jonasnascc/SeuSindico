@@ -1,13 +1,16 @@
 import { Container } from "@mui/material"
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import useImovelForm from "../../../../../shared/hooks/useImovelForm"
-import { SaveDiv, SaveButton } from "../../../../ImoveisPage/styles"
+import { ButtonsDiv } from "../../../../ImoveisPage/styles"
 import { useImovelFormSteps } from "../../../../../shared/hooks/useImovelFormSteps"
 import { FormStepper } from "../../../../../shared/components/Forms/FormStepper/FormStepper"
 import { EnderecoForm } from "../EnderecoForm/EnderecoForm"
 import { EspacosForm } from "../EspacosForm/EspacosForm"
 import { NameForm } from "./NameForm"
 import { ImovelDetailsForm } from "./ImovelDetailsForm"
+import { FormButton, StepperTile } from "../styles"
+import { Form, Formik } from "formik"
+import { EmptyImovel } from "../../../../../types/imovel"
 
 export const ImovelForm = () => {
     const {
@@ -33,38 +36,37 @@ export const ImovelForm = () => {
     
     return (
         <Container>
-            <FormStepper
-                steps = {stepsSequence}
-                activeStep={currentStep}
-                onStepChange={handleChangeStep}
-            />
-            <ImovelDetailsForm
-                imovel={imovel}
-                visible={steps.details.visible}
-                onChange={handleFormChange}
-                onSubmit={handleStepNext}
-            />
-            <NameForm 
-                imovel={imovel}
-                visible={steps.name.visible}
-                onChange={handleFormChange}
-            />
-            <EnderecoForm 
-                imovel={imovel}
-                visible={steps.address.visible}
-                onChange={(event:any) => handleFormChange(event, "endereco")}
-            />
-            <EspacosForm 
-                onSaveEspaco={handleSaveEspaco} 
-                espacos={imovel.espacos}
-                onAddComodo={handleAddComodo}
-                visible={steps.spaces.visible}
-            />
-            <button type="button" onClick={handleStepBack}>Back</button>
-            <button type="button" onClick={handleStepNext}>Next</button>
-            <SaveDiv>
-                <SaveButton onClick={handleSaveImovel}>Salvar Imóvel</SaveButton>
-            </SaveDiv>
+            <StepperTile>
+                <FormStepper
+                    steps = {stepsSequence}
+                    activeStep={currentStep}
+                    onStepChange={handleChangeStep}
+                />
+            </StepperTile>
+            <Formik 
+                initialValues={{...EmptyImovel}} 
+                onSubmit={async (values) => console.log(values)}
+            >
+                <Form>
+                    <ImovelDetailsForm visible={steps.details.visible}/>
+                    
+                    <NameForm visible={steps.name.visible}/>
+
+                    <EnderecoForm visible={steps.address.visible}/>
+
+                    <EspacosForm 
+                        onSaveEspaco={handleSaveEspaco} 
+                        espacos={imovel.espacos}
+                        onAddComodo={handleAddComodo}
+                        visible={steps.spaces.visible}
+                    />                
+                    <ButtonsDiv>
+                        <FormButton type="button" onClick={handleStepBack}>Back</FormButton>
+                        <FormButton type="button" onClick={handleStepNext}>Next</FormButton>
+                        <FormButton type="submit">Salvar Imóvel</FormButton>
+                    </ButtonsDiv>
+                </Form>
+            </Formik>
         </Container>
     )
 }

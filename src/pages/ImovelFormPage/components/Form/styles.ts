@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { StyledBtn } from "../../../../shared/components/Buttons/styles";
 
 export const FormDescription = styled.h3`
     font-weight: 500;
@@ -48,9 +49,6 @@ export const ClickableArea = styled.div`
     &:hover {
         color: #FC7300;
     }
-    /* &:active {
-        background-color: rgba(0,0,0,.1);
-    } */
 `
 
 export const FadeContainer = styled.div`
@@ -59,4 +57,12 @@ export const FadeContainer = styled.div`
     justify-content: center;
     height: 100%;
     width: 100%;
+`
+
+export const StepperTile = styled.div`
+    padding: 30px 0;
+`
+
+export const FormButton = styled(StyledBtn)`
+
 `

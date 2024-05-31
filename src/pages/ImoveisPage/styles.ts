@@ -19,21 +19,12 @@ export const SearchBox = styled.div`
     margin-top: 10px;
 `
 
-export const SaveDiv = styled.div`
+export const ButtonsDiv = styled.div`
     display: flex;
     justify-content: end;
     align-items: center;
     padding-right: 25px;
-`
-
-export const SaveButton = styled.button`
-    background-color: #4B31A1;
-    border : none;
-    border-radius: 20px;
-    padding: 10px 15px;
-    color: white;
-    cursor: pointer;
-
+    gap: .5vw;
 `
 
 export const BtnsTile = styled.div`

@@ -9,7 +9,7 @@ type FormStepperProps = {
     errorSteps ?: number[]
 }
 
-export const FormStepper = ({steps, activeStep, completedSteps = [0], errorSteps= [2], onStepChange} : FormStepperProps) => {
+export const FormStepper = ({steps, activeStep, completedSteps = [], errorSteps= [], onStepChange} : FormStepperProps) => {
 
     const handleStepChange = (index : number) => {
         onStepChange(index)

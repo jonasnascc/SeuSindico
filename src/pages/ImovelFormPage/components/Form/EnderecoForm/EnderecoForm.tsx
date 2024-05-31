@@ -1,127 +1,125 @@
-import React from "react";
-import { Grid } from "@mui/material";
-import { ImovelFormCard } from "../../../../../shared/components/ImovelFormCard/ImovelFormCard";
-import { Imovel } from "../../../../../types/imovel";
+import { Grid, InputLabel, TextField } from "@mui/material";
 import { StepComponentProps } from "../../../../../shared/hooks/useImovelFormSteps";
-import { FormGridTileVerticalDirection, InputLabel } from "../../../../../shared/components/Forms/styles";
+import { FormGridTileVerticalDirection} from "../../../../../shared/components/Forms/styles";
 import { ImovelFormStep } from "../ImovelForm/ImovelFormStep";
+import { useFormikContext } from "formik";
+import { Imovel } from "../../../../../types/imovel";
 
+export const EnderecoForm = ({visible} : StepComponentProps) => {
+    const {values, setValues} = useFormikContext<Imovel>()
 
-type EnderecoFormProps = {
-    imovel: Imovel,
-    onChange: (event:any) => void
-}&StepComponentProps
+    const handleChange = (event : any) => {
+        if(values.endereco) {
+            setValues({
+                ...values,
+                endereco: {
+                    ...values.endereco,
+                    [event.target.name] : event.target.value
+                }
+            })
+        }
+    }
 
-export const EnderecoForm = ({onChange, imovel, visible} : EnderecoFormProps) => {
-    const {endereco} = imovel;
     return (
         <ImovelFormStep visible={visible}>
-            <ImovelFormCard
-                label = "Qual o endereço do seu imóvel?"
-                headerGridScreens={{xs:12}}
-                bodyGridScreens={{xs:12}}
-            >
-                <form>
-                    <Grid container>
-                        <Grid item xs={12} sm={12} md={6}>
-                            <FormGridTileVerticalDirection>
-                                <InputLabel>Rua: </InputLabel>
-                                <input
-                                    id="rua"
-                                    name="rua"
-                                    type="text"
-                                    placeholder="Digite a rua"
-                                    value={endereco?.rua??""}
-                                    onChange={onChange}
-                                />
-                            </FormGridTileVerticalDirection>
-                        </Grid>
+            <Grid container>
+                <Grid item xs={12} sm={12} md={6}>
+                    <FormGridTileVerticalDirection>
+                        <InputLabel>Rua: </InputLabel>
+                        <TextField
+                            id="rua"
+                            name="rua"
+                            type="text"
+                            placeholder="Digite a rua"
+                            value={values.endereco?.rua??""}
+                            onChange={handleChange}
+                        />
+                    </FormGridTileVerticalDirection>
+                </Grid>
 
-                        <Grid item xs={12} sm={12} md={6}>
-                            <FormGridTileVerticalDirection>
-                                <InputLabel>Bairro: </InputLabel>
-                                <input
-                                    id="bairro"
-                                    name="bairro"
-                                    type="text"
-                                    placeholder="Digite o bairro"
-                                    value={endereco?.bairro??""}
-                                    onChange={onChange}
-                                />
-                            </FormGridTileVerticalDirection>
-                        </Grid>
+                <Grid item xs={12} sm={12} md={6}>
+                    <FormGridTileVerticalDirection>
+                        <InputLabel>Bairro: </InputLabel>
+                        <TextField
+                            id="bairro"
+                            name="bairro"
+                            type="text"
+                            placeholder="Digite o bairro"
+                            value={values.endereco?.bairro??""}
+                            onChange={handleChange}
+                        />
+                    </FormGridTileVerticalDirection>
+                </Grid>
 
-                        <Grid item xs={12} sm={5} md={4}>
-                            <FormGridTileVerticalDirection>
-                                <InputLabel>Número: </InputLabel>
-                                <input
-                                    id="numero"
-                                    name="numero"
-                                    type="text"
-                                    placeholder="ex.: 121 B"
-                                    value={endereco?.numero??""}
-                                    onChange={onChange}
-                                />
-                            </FormGridTileVerticalDirection>
-                        </Grid>
-                        
-                        <Grid item xs={12} sm={7}  md={4}>
-                            <FormGridTileVerticalDirection>
-                                <InputLabel>Cidade: </InputLabel>
-                                <input
-                                    id="cidade"
-                                    name="cidade"
-                                    type="text"
-                                    placeholder="Digite a cidade"
-                                    value={endereco?.cidade??""}
-                                    onChange={onChange}
-                                />
-                            </FormGridTileVerticalDirection>
-                        </Grid>
+                <Grid item xs={12} sm={5} md={4}>
+                    <FormGridTileVerticalDirection>
+                        <InputLabel>Número: </InputLabel>
+                        <TextField
+                            id="numero"
+                            name="numero"
+                            type="text"
+                            placeholder="ex.: 121 B"
+                            value={values.endereco?.numero??""}
+                            onChange={handleChange}
+                        />
+                    </FormGridTileVerticalDirection>
+                </Grid>
+                
+                <Grid item xs={12} sm={7}  md={4}>
+                    <FormGridTileVerticalDirection>
+                        <InputLabel>Cidade: </InputLabel>
+                        <TextField
+                            id="cidade"
+                            name="cidade"
+                            type="text"
+                            placeholder="Digite a cidade"
+                            value={values.endereco?.cidade??""}
+                            onChange={handleChange}
+                        />
+                    </FormGridTileVerticalDirection>
+                </Grid>
 
-                        <Grid item xs={12} sm={7}  md={4}>
-                            <FormGridTileVerticalDirection>
-                                <InputLabel>Estado: </InputLabel>
-                                <input
-                                    id="estado"
-                                    name="estado"
-                                    type="text"
-                                    placeholder="Digite o estado"
-                                    value={endereco?.estado??""}
-                                    onChange={onChange}
-                                />
-                            </FormGridTileVerticalDirection>
-                        </Grid>
+                <Grid item xs={12} sm={7}  md={4}>
+                    <FormGridTileVerticalDirection>
+                        <InputLabel>Estado: </InputLabel>
+                        <TextField
+                            id="estado"
+                            name="estado"
+                            type="text"
+                            placeholder="Digite o estado"
+                            value={values.endereco?.estado??""}
+                            onChange={handleChange}
+                        />
+                    </FormGridTileVerticalDirection>
+                </Grid>
 
-                        <Grid item xs={12} sm={5}  md={4}>
-                            <FormGridTileVerticalDirection>
-                                <InputLabel>CEP: </InputLabel>
-                                <input
-                                    id="cep"
-                                    name="cep"
-                                    type="text"
-                                    placeholder="Digite o CEP"
-                                    value={endereco?.cep??""}
-                                    onChange={onChange}
-                                />
-                            </FormGridTileVerticalDirection>
-                        </Grid>
-                        <Grid item xs={12} sm={12} md={8}>
-                            <FormGridTileVerticalDirection>
-                                <InputLabel>Complemento: </InputLabel>
-                                <input
-                                    id="complemento"
-                                    name="complemento"
-                                    type="text"
-                                    placeholder="Digite o complemento"
-                                    value={endereco?.complemento??""}
-                                    onChange={onChange}
-                                />
-                            </FormGridTileVerticalDirection>
-                        </Grid>
-                    </Grid>
-                </form>
-            </ImovelFormCard>
+                <Grid item xs={12} sm={5}  md={4}>
+                    <FormGridTileVerticalDirection>
+                        <InputLabel>CEP: </InputLabel>
+                        <TextField
+                            id="cep"
+                            name="cep"
+                            type="text"
+                            placeholder="Digite o CEP"
+                            value={values.endereco?.cep??""}
+                            onChange={handleChange}
+                        />
+                    </FormGridTileVerticalDirection>
+                </Grid>
+                <Grid item xs={12} sm={12} md={8}>
+                    <FormGridTileVerticalDirection>
+                        <InputLabel>Complemento: </InputLabel>
+                        <TextField
+                            id="complemento"
+                            name="complemento"
+                            type="text"
+                            placeholder="Digite o complemento"
+                            value={values.endereco?.complemento??""}
+                            onChange={handleChange}
+                        />
+                    </FormGridTileVerticalDirection>
+                </Grid>
+            </Grid>
         </ImovelFormStep>
         
     )
