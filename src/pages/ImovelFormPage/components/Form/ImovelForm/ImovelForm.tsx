@@ -23,7 +23,8 @@ export const ImovelForm = () => {
         stepsSequence,
         currentStep,
         handleStepBack,
-        handleStepNext
+        handleStepNext,
+        handleChangeStep
     } = useImovelFormSteps();
 
     useEffect(() => {
@@ -35,6 +36,7 @@ export const ImovelForm = () => {
             <FormStepper
                 steps = {stepsSequence}
                 activeStep={currentStep}
+                onStepChange={handleChangeStep}
             />
             <ImovelDetailsForm
                 imovel={imovel}

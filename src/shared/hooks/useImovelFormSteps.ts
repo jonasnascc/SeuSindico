@@ -37,13 +37,15 @@ const steps : Record<string, Step> = {
 const stepsSequence = ["details", "name", "address", "spaces"]
 
 export const useImovelFormSteps = () => {
-    const [currentStep, setCurrentStep] = useState(0);
+    const [currentStep, setCurrentStep] = useState(-1);
     const navigate = useNavigate()
     const location = useLocation()
 
+    useEffect(() => {console.log(currentStep)} , [currentStep])
+
     useEffect(() => {
         const stepsKeys : string[] = Object.keys(steps)
-        let current = 0;
+        let current = -1;
         stepsKeys.forEach(key => {
             if(steps[key].visible) {
                 if(location.hash) {
@@ -72,27 +74,24 @@ export const useImovelFormSteps = () => {
 
     const handleStepNext = () => {
         if(currentStep < stepsSequence.length - 1){
-            steps[stepsSequence[currentStep]].visible = false
-            setCurrentStep((current) => {
-                const step = steps[stepsSequence[current + 1]]
-                navigate(step.hash)
-                step.visible = true
-                return current + 1
-            })
-
+            handleChangeStep(currentStep + 1)
         }
     }
 
     const handleStepBack = () => {
         if(currentStep > 0) {
-            steps[stepsSequence[currentStep]].visible = false
-            setCurrentStep((current) => {
-                const step = steps[stepsSequence[current - 1]]
-                navigate(step.hash)
-                step.visible = true
-                return current-1
-            })
+            handleChangeStep(currentStep - 1)
         }
+    }
+
+    const handleChangeStep = (index : number) => {
+        steps[stepsSequence[currentStep]].visible = false
+        setCurrentStep(() => {
+            const step = steps[stepsSequence[index]]
+            navigate(step.hash)
+            step.visible = true
+            return index
+        })
     }
 
     return {
@@ -100,6 +99,7 @@ export const useImovelFormSteps = () => {
         stepsSequence,
         currentStep,
         handleStepBack,
-        handleStepNext
+        handleStepNext,
+        handleChangeStep
     }
 }
