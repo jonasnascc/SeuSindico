@@ -72,7 +72,6 @@ const useImovelForm = (imovelData ?: Imovel, imovelFromState?:boolean) => {
             })
         }
     }
-
     
     const handleAddComodo = (espaco:Espaco, comodo: Comodo) => {
         const espacoImv = imovel.espacos.filter(esp => esp.numero === espaco.numero);
@@ -88,6 +87,10 @@ const useImovelForm = (imovelData ?: Imovel, imovelFromState?:boolean) => {
         }
     }
 
+    const handleSubmit = (values : Imovel) => {
+
+    }
+
     return {
         imovel,
         handleImovelPropChange,
@@ -95,6 +98,7 @@ const useImovelForm = (imovelData ?: Imovel, imovelFromState?:boolean) => {
         handleSaveImovel,
         handleSaveEspaco,
         handleAddComodo,
+        handleSubmit,
         isEditing
     }
 }

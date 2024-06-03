@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
+import { Imovel } from "../../types/imovel"
+import { FormikErrors, FormikTouched, FormikValues } from "formik"
 
 type Step = {
     name : string,
     hash : string,
-    visible: boolean
+    visible: boolean,
 }
 
 export type StepComponentProps = {
-    visible : boolean
+    visible : boolean,
+    getErrorsFn ?: (
+        obj:any,
+        errors?: FormikErrors<Imovel>, 
+        touched?: FormikTouched<Imovel>
+    ) => any
 }
 
 const steps : Record<string, Step> = {
@@ -38,10 +45,10 @@ const stepsSequence = ["details", "name", "address", "spaces"]
 
 export const useImovelFormSteps = () => {
     const [currentStep, setCurrentStep] = useState(-1);
+    const [errorSteps, setErrorSteps] = useState<number[]>([])
+    const [completedSteps, setCompletedSteps] = useState<number[]>([])
     const navigate = useNavigate()
     const location = useLocation()
-
-    useEffect(() => {console.log(currentStep)} , [currentStep])
 
     useEffect(() => {
         const stepsKeys : string[] = Object.keys(steps)
@@ -59,7 +66,6 @@ export const useImovelFormSteps = () => {
                 }
             }
             if(location.hash) {
-                console.log(location.hash)
                 if(steps[key].hash === location.hash){
                     steps[key].visible = true
                     const index = stepsSequence.indexOf(key)
@@ -74,6 +80,7 @@ export const useImovelFormSteps = () => {
 
     const handleStepNext = () => {
         if(currentStep < stepsSequence.length - 1){
+            const last = currentStep;
             handleChangeStep(currentStep + 1)
         }
     }
@@ -94,12 +101,60 @@ export const useImovelFormSteps = () => {
         })
     }
 
+    const handleGetErrorsFn = (
+        obj : any, 
+        errors: FormikErrors<Imovel>, 
+        touched: FormikTouched<Imovel>, 
+        stepName : string,
+        subProp ?: string
+    ) => {
+        let errorsObj = obj;
+
+        let hasErrors = false;
+        let hasNotTouched = false;
+        Object.keys(obj).forEach((key:any) => {
+            const err = errors[key as keyof typeof errors]
+            const touch = touched[key as keyof typeof touched]
+
+            errorsObj[key] = ""
+
+            if(touch && Boolean(err)){
+                errorsObj[key] = err
+                hasErrors = true;
+            } 
+            if(!touch) {
+                hasNotTouched = true;
+            }
+        })
+        if(hasErrors) {
+            setErrorSteps((prev) => [...prev, stepsSequence.indexOf(stepName)])
+            setCompletedSteps((prev) => prev.filter(stp => stp!==stepsSequence.indexOf(stepName)))
+        }else{
+            if(!hasNotTouched) setCompletedSteps((prev) => [...prev, stepsSequence.indexOf(stepName)])
+            setErrorSteps((prev) => prev.filter(stp => stp!==stepsSequence.indexOf(stepName)))
+        }
+        return errorsObj
+    } 
+
+    const handleFormSubmit = () => {
+        stepsSequence.forEach((stp, index) => {
+            if(!completedSteps.includes(index)) {
+                setErrorSteps((prev) => [...prev, index])
+            }
+        })
+    }
+
+
     return {
         steps,
         stepsSequence,
         currentStep,
+        errorSteps,
+        completedSteps,
         handleStepBack,
         handleStepNext,
-        handleChangeStep
+        handleChangeStep,
+        handleGetErrorsFn,
+        handleFormSubmit
     }
 }

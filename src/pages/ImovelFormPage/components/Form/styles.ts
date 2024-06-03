@@ -9,6 +9,9 @@ export const FormDescription = styled.h3`
     width: 100%;
 `
 
+export const StepContent = styled.div`
+`
+
 export const CenteredAlignedFormDescription = styled(FormDescription)`
     text-align: center;
 `

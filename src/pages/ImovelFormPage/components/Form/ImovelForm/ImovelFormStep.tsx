@@ -1,5 +1,6 @@
 import React from "react";
 import { StepComponentProps } from "../../../../../shared/hooks/useImovelFormSteps";
+import { StepContent } from "../styles";
 
 export type ImovelFormStepProps = {
     children : React.ReactNode
@@ -7,5 +8,5 @@ export type ImovelFormStepProps = {
 
 export const ImovelFormStep = ({visible, children} : ImovelFormStepProps) => {
     if(!visible) return(null)
-    return (<>{children}</>)
+    return (<StepContent>{children}</StepContent>)
 }

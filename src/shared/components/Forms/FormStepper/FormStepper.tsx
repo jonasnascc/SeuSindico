@@ -30,10 +30,10 @@ export const FormStepper = ({steps, activeStep, completedSteps = [], errorSteps=
                     <Step 
                         key={label} 
                         active={index === activeStep}
-                        completed={isStepCompleted(index)}
+                        completed={index!==activeStep && isStepCompleted(index)}
                     >
                         <StepButton onClick={() => handleStepChange(index)}>
-                            <StepLabel error={isStepError(index)}>
+                            <StepLabel error={index!==activeStep && isStepError(index)}>
                                 {label}
                             </StepLabel>
                         </StepButton>
